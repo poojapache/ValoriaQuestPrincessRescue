@@ -17,12 +17,13 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
 
     //Store the key count and energy count
-    private int noOfKeys;
-    private int energyLevel;
+    public int noOfKeys;
+    public int energyLevel;
 
     //Variable for key and energy count on Canvas
     public TextMeshProUGUI keyCountText;
     public TextMeshProUGUI energyCountText;
+    public GameObject doorKeyNeededText;
 
     // Start is called before the first frame update.
     void Start()
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
             // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
             noOfKeys += 1;
+            doorKeyNeededText.SetActive(false);
             SetKeyCountText();
         }
         if (other.gameObject.CompareTag("EnergyCollectible"))
