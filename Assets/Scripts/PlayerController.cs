@@ -36,9 +36,11 @@ public class PlayerController : MonoBehaviour
         SetEnergyCountText();
     }
 
+
     // This function is called when a move input is detected.
     void OnMove(InputValue movementValue)
     {
+        Debug.Log("moved");
         // Convert the input value into a Vector2 for movement.
         Vector2 movementVector = movementValue.Get<Vector2>();
 
@@ -89,6 +91,4 @@ public class PlayerController : MonoBehaviour
             SetEnergyCountText();
         }
     }
-
-
 }
