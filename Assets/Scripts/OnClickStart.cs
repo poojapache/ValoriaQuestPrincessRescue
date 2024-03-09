@@ -33,7 +33,7 @@ public class OnClickStart : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     // Start is called before the first frame update
     public void StartGame()
     {
-        SceneManager.LoadScene("Scenes/Scene1");
+        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
     }
     public void QuitGame()
