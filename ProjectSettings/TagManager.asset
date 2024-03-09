@@ -7,8 +7,6 @@ TagManager:
   - Collectible
   - EnergyCollectible
   - KeyCollectible
-  - StartBtn
-  - QuitBtn
   layers:
   - Default
   - TransparentFX
@@ -16,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - postproc
+  - 
   - 
   - 
   - 
