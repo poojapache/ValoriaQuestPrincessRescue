@@ -2758,6 +2758,7 @@ PrefabInstance:
     - target: {fileID: 95152126842411956, guid: a367f32b0351f2648a0e15f3444c6f86, type: 3}
       propertyPath: m_Controller
       value: 
+      objectReference: {fileID: 9100000, guid: a320aaa08493643dc8f59a4145e26060, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a367f32b0351f2648a0e15f3444c6f86, type: 3}
 --- !u!1 &291230702 stripped
@@ -2797,6 +2798,9 @@ MonoBehaviour:
   keyCountText: {fileID: 392709992}
   energyCountText: {fileID: 730737748}
   doorKeyNeededText: {fileID: 815079664}
+  InputMapToCircular: 1
+  forwardInputFilter: 5
+  turnInputFilter: 5
 --- !u!54 &291230709
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2855,6 +2859,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47cc781c5b274945ae33e85ecc6276d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationSpeed: 1
+  rootMoveSpeed: 1
+  rootTurnSpeed: 1
 --- !u!1 &299137211
 GameObject:
   m_ObjectHideFlags: 0
@@ -6447,7 +6454,6 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
