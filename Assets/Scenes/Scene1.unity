@@ -679,7 +679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8130921515361137296, guid: 39868262e399a4c48bf3739708613d2b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8130921515361137296, guid: 39868262e399a4c48bf3739708613d2b, type: 3}
       propertyPath: m_LocalScale.x
@@ -883,7 +883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -1819,7 +1819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 462124, guid: cc5de5e674870ca479a40105f80555ad, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 462124, guid: cc5de5e674870ca479a40105f80555ad, type: 3}
       propertyPath: m_LocalScale.x
@@ -2695,6 +2695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Female Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1896801731341158, guid: a367f32b0351f2648a0e15f3444c6f86, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4080208459921836, guid: a367f32b0351f2648a0e15f3444c6f86, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2774,7 +2778,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291230702}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.3
   m_Height: 1.8
@@ -3168,7 +3172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -6454,10 +6458,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 2
+  m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -7165,7 +7170,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 62
+  field of view: 45
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -7196,7 +7201,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -7321,7 +7326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1309486516299566, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4038571377456084, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7685,7 +7690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4467757482891228, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4467757482891228, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
       propertyPath: m_LocalScale.x
