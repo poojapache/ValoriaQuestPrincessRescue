@@ -2758,7 +2758,7 @@ PrefabInstance:
     - target: {fileID: 95152126842411956, guid: a367f32b0351f2648a0e15f3444c6f86, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 65b24d220c8cbeb40a814835a4a35299, type: 2}
+      objectReference: {fileID: 9100000, guid: a320aaa08493643dc8f59a4145e26060, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a367f32b0351f2648a0e15f3444c6f86, type: 3}
 --- !u!1 &291230702 stripped
@@ -2798,6 +2798,9 @@ MonoBehaviour:
   keyCountText: {fileID: 392709992}
   energyCountText: {fileID: 730737748}
   doorKeyNeededText: {fileID: 815079664}
+  InputMapToCircular: 1
+  forwardInputFilter: 5
+  turnInputFilter: 5
 --- !u!54 &291230709
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2856,6 +2859,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47cc781c5b274945ae33e85ecc6276d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationSpeed: 1
+  rootMoveSpeed: 1
+  rootTurnSpeed: 1
 --- !u!1 &299137211
 GameObject:
   m_ObjectHideFlags: 0
@@ -10433,6 +10439,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &1249947696
 MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: UI/ScrollWheel
+  m_EditorClassIdentifier: 
+  m_Asset: {fileID: -944628639613478452, guid: c62309a10f066174f8c0a5d4e38afe54, type: 3}
+  m_ActionId: 39324782-0627-470c-8893-7c7659a6a701
+--- !u!65 &1309853555
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
