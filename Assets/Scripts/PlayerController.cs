@@ -25,7 +25,20 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI energyCountText;
     public GameObject doorKeyNeededText;
 
-    // Start is called before the first frame update.
+    //Variables for movement
+    public float Forward
+    {
+        get;
+        private set;
+    }
+
+    public float Turn
+    {
+        get;
+        private set;
+    }
+
+    // Initialize; Start is called before the first frame update.
     void Start()
     {
         // Get and store the Rigidbody component attached to the player.
@@ -36,9 +49,11 @@ public class PlayerController : MonoBehaviour
         SetEnergyCountText();
     }
 
+
     // This function is called when a move input is detected.
     void OnMove(InputValue movementValue)
     {
+        Debug.Log("moved");
         // Convert the input value into a Vector2 for movement.
         Vector2 movementVector = movementValue.Get<Vector2>();
 
@@ -53,22 +68,13 @@ public class PlayerController : MonoBehaviour
         keyCountText.text = noOfKeys.ToString();
     }
 
-    //Set the energy level
+    // Set the energy level
     void SetEnergyCountText()
     {
         energyCountText.text = energyLevel.ToString();
     }
 
-    // FixedUpdate is called once per fixed frame-rate frame.
-    private void FixedUpdate()
-    {
-        // Create a 3D movement vector using the X and Y inputs.
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-
-        // Apply force to the Rigidbody to move the player.
-        rb.AddForce(movement * speed);
-    }
-
+    // Collision with trigger 
     void OnTriggerEnter(Collider other)
     {
         // Check if the object the player collided with has the "PickUp" tag.
@@ -90,5 +96,44 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private float filteredForwardInput = 0f;
+    private float filteredTurnInput = 0f;
 
+    public bool InputMapToCircular = true;
+
+    public float forwardInputFilter = 5f;
+    public float turnInputFilter = 5f;
+
+    void Update()
+    {
+        //GetAxisRaw() so we can do filtering here instead of the InputManager
+        float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
+        float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
+
+
+        if (InputMapToCircular)
+        {
+            // make coordinates circular
+            //based on http://mathproofs.blogspot.com/2005/07/mapping-square-to-circle.html
+            h = h * Mathf.Sqrt(1f - 0.5f * v * v);
+            v = v * Mathf.Sqrt(1f - 0.5f * h * h);
+
+        }
+
+        if (Input.GetKey(KeyCode.Q))
+            h = -0.5f;
+        else if (Input.GetKey(KeyCode.E))
+            h = 0.5f;
+
+
+        //do some filtering of our input as well as clamp to a speed limit
+        filteredForwardInput = Mathf.Clamp(Mathf.Lerp(filteredForwardInput, v,
+            Time.deltaTime * forwardInputFilter), -speed, speed);
+
+        filteredTurnInput = Mathf.Lerp(filteredTurnInput, h,
+            Time.deltaTime * turnInputFilter);
+
+        Forward = filteredForwardInput;
+        Turn = filteredTurnInput;
+    }
 }
