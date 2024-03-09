@@ -60,6 +60,7 @@ public class DoorAnimationController : MonoBehaviour
         if (c.gameObject.CompareTag("Player") && c.GetComponent<PlayerController>().noOfKeys == 1)
         {
             print("closing door");
+            c.GetComponent<PlayerController>().noOfKeys = c.GetComponent<PlayerController>().noOfKeys - 1;
             AnimateClosed();
             
         }

@@ -7,6 +7,9 @@ TagManager:
   - Collectible
   - EnergyCollectible
   - KeyCollectible
+  - ShieldColllectible
+  - EnergyPotionCollectible
+  - Ghost
   layers:
   - Default
   - TransparentFX

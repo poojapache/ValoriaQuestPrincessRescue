@@ -82,12 +82,27 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("EnergyCollectible"))
         {
+            
             // Deactivate the collided object (making it disappear).
             Debug.Log(other.gameObject.tag);
             other.gameObject.SetActive(false);
             energyLevel += 10;
             SetEnergyCountText();
         }
+        if (other.gameObject.CompareTag("EnergyPotionCollectible"))
+        {
+            Debug.Log(other.gameObject.tag);
+            other.gameObject.SetActive(false);
+            energyLevel *= 2;
+            SetEnergyCountText();
+            
+        }
+        if (other.gameObject.CompareTag("Ghost"))
+        {
+            Debug.Log(other.gameObject.tag);
+            other.gameObject.SetActive(false);
+        }
+
     }
 
 
