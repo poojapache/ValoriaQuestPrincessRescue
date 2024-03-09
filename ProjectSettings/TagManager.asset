@@ -9,6 +9,8 @@ TagManager:
   - KeyCollectible
   - StartBtn
   - QuitBtn
+  - EnergyPotionCollectible
+  - Ghost
   layers:
   - Default
   - TransparentFX
