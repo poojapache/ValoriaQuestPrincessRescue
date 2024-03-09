@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 public class OnClickStart : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image imageToShowHide; // Reference to the image to show/hide
+    public GameObject currentPanel; //The current Game Menu Panel
+    public GameObject nextPanel; //The instructions Game Menu Panel
 
     void Start()
     {
         // Hide the image initially
         imageToShowHide.gameObject.SetActive(false);
+        currentPanel.SetActive(true);
+        nextPanel.SetActive(false);
     }
 
     void Update()
@@ -33,8 +37,8 @@ public class OnClickStart : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     // Start is called before the first frame update
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
-        Time.timeScale = 1f;
+        currentPanel.SetActive(false);
+        nextPanel.SetActive(true);
     }
     public void QuitGame()
     {

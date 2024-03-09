@@ -23,7 +23,8 @@ public class StartCameraController : MonoBehaviour
 
     public float playAtTime = 19.5f; // Time at which to play the audio (in seconds)
 
-    public GameObject panel;
+    public GameObject menuPanel; //The game menu panel
+    public GameObject instructionsPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,8 @@ public class StartCameraController : MonoBehaviour
         RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1.35f);
         targetAtmosphericThickness = 1.35f;
         gameTitle.SetActive(false);
-        panel.SetActive(false);
+        menuPanel.SetActive(false);
+        instructionsPanel.SetActive(false);
 
         // Start the coroutine to play audio at the specified time
         StartCoroutine(PlayAudioAtTime(playAtTime));
@@ -71,20 +73,16 @@ public class StartCameraController : MonoBehaviour
         // Check the camera's altitude (y-position) against the trigger altitude
         if (tCameraPosn.y < tTriggerAltitude)
         {
-
             // Move the camera up
             transform.Translate((Vector3.up * (Time.deltaTime * 5.0f)), Space.World);
-
         }
         else
         {
-
             if (tCameraPosn.z >= 1100.0f)
             {
                 // Move the camera forward
                 transform.Translate((Vector3.forward * (Time.deltaTime * 10.0f)));
             }
-
         }
 
         // Increment timer
@@ -117,7 +115,7 @@ public class StartCameraController : MonoBehaviour
         {
             gameTitle.SetActive(false);
             AssignNewLayer();
-            panel.SetActive(true);
+            menuPanel.SetActive(true);
         }
         }
     }
