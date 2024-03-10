@@ -20,8 +20,12 @@ public class PlayerController : MonoBehaviour
     public int noOfKeys;
     public int energyLevel;
 
+    //Number of gems collected so far
+    public int noOfGems;
+
     //Variable for key and energy count on Canvas
     public TextMeshProUGUI keyCountText;
+    public TextMeshProUGUI GemCountText;
     public TextMeshProUGUI energyCountText;
     public GameObject doorKeyNeededText;
 
@@ -46,6 +50,7 @@ public class PlayerController : MonoBehaviour
         noOfKeys = 0;
         energyLevel = 0;
         SetKeyCountText();
+        SetGemCountText();
         SetEnergyCountText();
     }
 
@@ -74,7 +79,13 @@ public class PlayerController : MonoBehaviour
         energyCountText.text = energyLevel.ToString();
     }
 
-    // Collision with trigger 
+    //Set the number of gems collected on canvase
+    void SetGemCountText()
+    {
+        GemCountText.text = noOfGems.ToString();
+    }
+
+    // Collision with trigger
     void OnTriggerEnter(Collider other)
     {
         // Check if the object the player collided with has the "PickUp" tag.
@@ -101,6 +112,14 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             energyLevel += 50;
             SetEnergyCountText();
+        }
+        // Check if the object the player collided with has the "PickUp" tag.
+        if (other.gameObject.CompareTag("GemCollectable"))
+        {
+            // Deactivate the collided object (making it disappear).
+            other.gameObject.SetActive(false);
+            noOfGems += 1;
+            SetGemCountText();
         }
         if (other.gameObject.CompareTag("Ghost"))
         {

@@ -11,6 +11,7 @@ TagManager:
   - QuitBtn
   - EnergyPotionCollectible
   - Ghost
+  - GemCollectable
   layers:
   - Default
   - TransparentFX
