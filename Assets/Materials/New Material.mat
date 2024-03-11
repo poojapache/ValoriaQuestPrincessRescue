@@ -59,7 +59,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AtmosphereThickness: 1.3740011
+<<<<<<< Updated upstream
+    - _AtmosphereThickness: 1.3520001
+=======
+    - _AtmosphereThickness: 1.4650054
+>>>>>>> Stashed changes
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
