@@ -340,24 +340,56 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 958bd2cccfa87b74a9a880ee35f4f534, type: 3}
-    m_Threshold: 0.33333334
-    m_Position: {x: 0, y: 0.49}
+    m_Threshold: 0.14285715
+    m_Position: {x: -0.003, y: 0.476}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 4ccddb3d09a844809a6cb4261d925c94, type: 2}
-    m_Threshold: 0.6666667
-    m_Position: {x: 0.5, y: 0.05}
+    m_Threshold: 0.2857143
+    m_Position: {x: 0.413, y: 0.295}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 0ae940a79c6d6471d8642f377ea628d2, type: 2}
+    m_Threshold: 0.42857143
+    m_Position: {x: -0.347, y: 0.263}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 1b7e400c084b041e98ba6e3b82b69d8a, type: 2}
+    m_Threshold: 0.5714286
+    m_Position: {x: 0.445, y: 0.05}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: f36aa72679c7649a1b42143db0036861, type: 2}
+    m_Threshold: 0.71428573
+    m_Position: {x: -0.399, y: 0.05}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 9e2d95f8d649a4c7db72d0854fd6facd, type: 2}
+    m_Threshold: 0.85714287
+    m_Position: {x: -0.227, y: 0.405}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 53fb95dbb3c1140e2af10ef631139c3d, type: 2}
     m_Threshold: 1
-    m_Position: {x: -0.5, y: 0.05}
+    m_Position: {x: 0.254, y: 0.438}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend

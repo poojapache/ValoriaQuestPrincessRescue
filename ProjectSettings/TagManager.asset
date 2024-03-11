@@ -12,6 +12,7 @@ TagManager:
   - EnergyPotionCollectible
   - Ghost
   - GemCollectable
+  - Enemy
   layers:
   - Default
   - TransparentFX

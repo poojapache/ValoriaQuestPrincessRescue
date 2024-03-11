@@ -13,7 +13,8 @@ public class PatrolandRunaway : MonoBehaviour
     public Transform enemy; // Reference to the enemy GameObject
     public float fleeDistance = 8f; // Distance at which the agent starts fleeing from the enemy
     [SerializeField] private float displacementDist = 8f;
-    public GameObject keyPrefab;
+    //public GameObject keyPrefab;
+    public int energyLevel;
 
     public enum AIState
     {
@@ -140,7 +141,7 @@ public class PatrolandRunaway : MonoBehaviour
             Vector3 keyPosition = transform.position;
             keyPosition.y = 7f;
             //Instantiate(keyPrefab, keyPosition, Quaternion.identity);
-            //c.gameObject.GetComponent<PlayerController>().CollectKey();
+            c.gameObject.GetComponent<PlayerController>().CollectKey();
         }
     }
 

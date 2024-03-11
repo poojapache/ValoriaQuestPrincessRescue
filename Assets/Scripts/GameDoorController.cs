@@ -4,23 +4,16 @@ using UnityEngine;
 
 public class GameDoorController : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    public Animator animator;
-=======
+
     private Animator animator;
->>>>>>> Stashed changes
     public int noOfKeysRequired;
     public bool isDummyDoor = false;
-    public GameObject gameOverGameObject;
+    public GameObject keyInfoTextObject;
 
 
     void Start()
     {
-<<<<<<< Updated upstream
-
-=======
         animator = GetComponent<Animator>();
->>>>>>> Stashed changes
     }
 
 
@@ -34,12 +27,28 @@ public class GameDoorController : MonoBehaviour
     {
         if (c.gameObject.CompareTag("Player")&& c.GetComponent<PlayerController>().noOfKeys == noOfKeysRequired)
         {
-            if(!isDummyDoor) animator.SetBool("isOpened", true);
+            keyInfoTextObject.SetActive(false);
+            animator.SetBool("isOpened", true);
+            c.GetComponent<PlayerController>().ClearGameInfoText();
+            if (!isDummyDoor) {
+                if(noOfKeysRequired == 3 && c.gameObject.GetComponent<PlayerController>().energyLevel < 60)
+                {
+                    c.GetComponent<PlayerController>().SetEnergyWarningText(60);
+                }
+                else if (noOfKeysRequired == 6 && (c.gameObject.GetComponent<PlayerController>().energyLevel < 100 || c.gameObject.GetComponent<PlayerController>().noOfGems < 5))
+                {
+                    c.GetComponent<PlayerController>().SetEnergyWarningText(100);
+
+                }
+                else if (noOfKeysRequired == 7)
+                {
+                    c.GetComponent<PlayerController>().GameWon();
+                }
+                
+            }
             else
             {
-                animator.SetBool("isOpened", true);
-                Time.timeScale = 0f;
-                gameOverGameObject.SetActive(true);
+                c.GetComponent<PlayerController>().GameLost();
 
             }
         }
