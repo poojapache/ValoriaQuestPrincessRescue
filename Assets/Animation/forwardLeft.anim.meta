@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Animation/forwardLeft.anim.meta
 guid: 0ae940a79c6d6471d8642f377ea628d2
+========
+guid: d22ee33958776414683d41f1d35a95fe
+>>>>>>>> Stashed changes:Assets/Materials/medieval_wood.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

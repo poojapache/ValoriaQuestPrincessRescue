@@ -155,7 +155,11 @@ public class PlayerController : MonoBehaviour
             //collision sound here
             // Deactivate the collided object (making it disappear).
             Debug.Log(other.gameObject.tag);
+<<<<<<< Updated upstream
             other.gameObject.SetActive(false);
+=======
+            other.transform.parent.gameObject.SetActive(false);
+>>>>>>> Stashed changes
             energyLevel += 10;
             SetEnergyCountText();
         }
@@ -200,5 +204,13 @@ public class PlayerController : MonoBehaviour
 
         Forward = filteredForwardInput;
         Turn = filteredTurnInput;
+    }
+
+    public void CollectKey()
+    {
+        //other.gameObject.SetActive(false);
+        noOfKeys += 1;
+        //doorKeyNeededText.SetActive(false);
+        SetKeyCountText();
     }
 }

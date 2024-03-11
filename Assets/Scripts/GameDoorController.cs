@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class GameDoorController : MonoBehaviour
 {
+<<<<<<< Updated upstream
     public Animator animator;
+=======
+    private Animator animator;
+>>>>>>> Stashed changes
     public int noOfKeysRequired;
     public bool isDummyDoor = false;
     public GameObject gameOverGameObject;
@@ -12,7 +16,11 @@ public class GameDoorController : MonoBehaviour
 
     void Start()
     {
+<<<<<<< Updated upstream
 
+=======
+        animator = GetComponent<Animator>();
+>>>>>>> Stashed changes
     }
 
 
