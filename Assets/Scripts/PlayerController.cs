@@ -1,8 +1,9 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
     // Rigidbody of the player.
@@ -22,28 +23,11 @@ public class PlayerController : MonoBehaviour
     //Number of gems collected so far
     public int noOfGems;
 
-    public int doorCount;
-
     //Variable for key and energy count on Canvas
     public TextMeshProUGUI keyCountText;
     public TextMeshProUGUI GemCountText;
     public TextMeshProUGUI energyCountText;
-    public TextMeshProUGUI gameInfoText;
-
-    private float filteredForwardInput = 0f;
-    private float filteredTurnInput = 0f;
-
-    public bool InputMapToCircular = true;
-
-    public float forwardInputFilter = 5f;
-    public float turnInputFilter = 5f;
-
-    private AudioSource audioSource;
-    public AudioClip[] audioClips;
-
-    public GameObject gameLostGameObject;
-    public GameObject gameWonGameObject;
-    public GameObject backgroundAudio;
+    public GameObject doorKeyNeededText;
 
     //Variables for movement
     public float Forward
@@ -63,11 +47,8 @@ public class PlayerController : MonoBehaviour
     {
         // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
         noOfKeys = 0;
         energyLevel = 0;
-        noOfGems = 0;
-        doorCount = 0;
         SetKeyCountText();
         SetGemCountText();
         SetEnergyCountText();
@@ -77,7 +58,7 @@ public class PlayerController : MonoBehaviour
     // This function is called when a move input is detected.
     void OnMove(InputValue movementValue)
     {
-        //Debug.Log("moved");
+        Debug.Log("moved");
         // Convert the input value into a Vector2 for movement.
         Vector2 movementVector = movementValue.Get<Vector2>();
 
@@ -107,10 +88,25 @@ public class PlayerController : MonoBehaviour
     // Collision with trigger
     void OnTriggerEnter(Collider other)
     {
+        // Check if the object the player collided with has the "PickUp" tag.
+        if (other.gameObject.CompareTag("KeyCollectible"))
+        {
+            // Deactivate the collided object (making it disappear).
+            other.gameObject.SetActive(false);
+            noOfKeys += 1;
+            doorKeyNeededText.SetActive(false);
+            SetKeyCountText();
+        }
+        if (other.gameObject.CompareTag("EnergyCollectible"))
+        {
+            // Deactivate the collided object (making it disappear).
+            Debug.Log(other.gameObject.tag);
+            other.gameObject.SetActive(false);
+            energyLevel += 10;
+            SetEnergyCountText();
+        }
         if (other.gameObject.CompareTag("EnergyPotionCollectible"))
         {
-            audioSource.clip = audioClips[3];
-            audioSource.Play();
             // Deactivate the collided object (making it disappear).
             Debug.Log(other.gameObject.tag);
             other.gameObject.SetActive(false);
@@ -120,8 +116,6 @@ public class PlayerController : MonoBehaviour
         // Check if the object the player collided with has the "PickUp" tag.
         if (other.gameObject.CompareTag("GemCollectable"))
         {
-            audioSource.clip = audioClips[2];
-            audioSource.Play();
             // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
             noOfGems += 1;
@@ -129,57 +123,20 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Ghost"))
         {
-            if (energyLevel >= other.gameObject.GetComponent<PatrolandRunaway>().energyLevel)
-            {
-                audioSource.clip = audioClips[4];
-                audioSource.Play();
-                // Deactivate the collided object (making it disappear).
-                Debug.Log(other.gameObject.tag);
-                other.gameObject.SetActive(false);
-            }
-            else GameLost();
-            
-        }
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            audioSource.clip = audioClips[4];
-            audioSource.Play();
             // Deactivate the collided object (making it disappear).
             Debug.Log(other.gameObject.tag);
             other.gameObject.SetActive(false);
-            GameLost();
         }
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        GameObject other = collision.gameObject;
-        if (other.gameObject.CompareTag("KeyCollectible"))
-        {
-            //collision sound here
-            audioSource.clip = audioClips[0];
-            audioSource.Play();
-            // Deactivate the collided object (making it disappear).
-            other.gameObject.SetActive(false);
-            noOfKeys += 1;
-            //doorKeyNeededText.SetActive(false);
-            SetKeyCountText();
-        }
-        if (other.gameObject.CompareTag("EnergyCollectible"))
-        {
-            //collision sound here
-            audioSource.clip = audioClips[1];
-            audioSource.Play();
-            // Deactivate the collided object (making it disappear).
-            Debug.Log(other.gameObject.tag);
+    private float filteredForwardInput = 0f;
+    private float filteredTurnInput = 0f;
 
-            other.transform.parent.gameObject.SetActive(false);
+    public bool InputMapToCircular = true;
 
-            energyLevel += 10;
-            SetEnergyCountText();
-        }
-    }
+    public float forwardInputFilter = 5f;
+    public float turnInputFilter = 5f;
 
     void Update()
     {
@@ -198,20 +155,9 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.Q))
-        {
             h = -0.5f;
-            v += 0.1f;
-        }
         else if (Input.GetKey(KeyCode.E))
-        {
             h = 0.5f;
-            v += 0.1f;
-        }
-
-        if (Mathf.Abs(h) > 0 && v == 0)
-        {
-            v = 0.05f;
-        }
 
 
         //do some filtering of our input as well as clamp to a speed limit
@@ -223,60 +169,5 @@ public class PlayerController : MonoBehaviour
 
         Forward = filteredForwardInput;
         Turn = filteredTurnInput;
-    }
-
-    public void SetEnergyWarningText(int energy)
-    {
-        if(energy == 100)
-        {
-
-            gameInfoText.text = "You need at least 100 energy and 4 gems to defeat the ghost!";
-        }
-        else
-        {
-
-            gameInfoText.text = "You need at least " + energy + " energy level to defeat the ghost!";
-        }
-    }
-
-    public void ClearGameInfoText()
-    {
-        gameInfoText.text = "";
-    }
-    public void CollectKey()
-    {//collision sound here
-        audioSource.clip = audioClips[0];
-        audioSource.Play();
-        noOfKeys += 1;
-        SetKeyCountText();
-    }
-
-    public void GameWon()
-    {
-        audioSource.clip = audioClips[5];
-        audioSource.Play();
-        Time.timeScale = 0f;
-        gameWonGameObject.SetActive(true);
-        backgroundAudio.SetActive(false);
-    }
-
-    public void GameLost()
-    {
-        audioSource.clip = audioClips[6];
-        audioSource.Play();
-        Time.timeScale = 0f;
-        gameLostGameObject.SetActive(true);
-        backgroundAudio.SetActive(false);
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void QuitGame()
-    {
-
-        Application.Quit();
     }
 }
