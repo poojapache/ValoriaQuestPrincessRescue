@@ -35,7 +35,7 @@ public class GameDoorController : MonoBehaviour
                 {
                     c.GetComponent<PlayerController>().SetEnergyWarningText(60);
                 }
-                else if (noOfKeysRequired == 6 && (c.gameObject.GetComponent<PlayerController>().energyLevel < 100 || c.gameObject.GetComponent<PlayerController>().noOfGems < 5))
+                else if (noOfKeysRequired == 6 && (c.gameObject.GetComponent<PlayerController>().energyLevel < 100 || c.gameObject.GetComponent<PlayerController>().noOfGems < 4))
                 {
                     c.GetComponent<PlayerController>().SetEnergyWarningText(100);
 

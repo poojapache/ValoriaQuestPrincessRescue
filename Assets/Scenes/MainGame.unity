@@ -2559,7 +2559,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7q Keys
+  m_text: 7 Keys
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -21091,8 +21091,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.534437, y: 2.549969, z: 3.9372149}
-  m_Center: {x: -0.04575392, y: 1.2997532, z: -1.4233632}
+  m_Size: {x: 2.534437, y: 2.549969, z: 1.0904369}
+  m_Center: {x: -0.04575392, y: 1.2997532, z: 0.000028314596}
 --- !u!205 &1515817910
 LODGroup:
   m_ObjectHideFlags: 0

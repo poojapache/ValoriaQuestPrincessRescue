@@ -230,7 +230,7 @@ public class PlayerController : MonoBehaviour
         if(energy == 100)
         {
 
-            gameInfoText.text = "You need at least 100 energy and 5 gems to defeat the ghost!";
+            gameInfoText.text = "You need at least 100 energy and 4 gems to defeat the ghost!";
         }
         else
         {

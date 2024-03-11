@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &19778320
 RectTransform:
   m_ObjectHideFlags: 0
@@ -579,10 +579,10 @@ RectTransform:
   m_Father: {fileID: 1387085116}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 51.3, y: 115}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0.2257984, y: 0.60376555}
+  m_AnchorMax: {x: 0.75870025, y: 0.8088231}
+  m_AnchoredPosition: {x: 4.000046, y: 0.5}
+  m_SizeDelta: {x: -6.2549133, y: -2.5401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94017839
 MonoBehaviour:
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.4
+  m_fontSize: 49.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -667,7 +667,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -95.46817, y: 0, z: -5.024658, w: 29.430008}
+  m_margin: {x: -2.4852295, y: 0, z: -5.024658, w: 29.430008}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2107,8 +2107,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 24255415128bea84fac9fdbb83234b5a, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3418,10 +3418,10 @@ RectTransform:
   m_Father: {fileID: 2108605412}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00047684, y: 0.00019836}
-  m_SizeDelta: {x: 739, y: 568.57}
+  m_AnchorMin: {x: 0.3518062, y: 0.13666667}
+  m_AnchorMax: {x: 0.6504899, y: 0.8233334}
+  m_AnchoredPosition: {x: -2.0004272, y: 1.3870087}
+  m_SizeDelta: {x: -5.8931274, y: -7.225189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1387085117
 MonoBehaviour:
@@ -4941,7 +4941,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 2
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
