@@ -29,6 +29,14 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI energyCountText;
     public GameObject doorKeyNeededText;
 
+    private float filteredForwardInput = 0f;
+    private float filteredTurnInput = 0f;
+
+    public bool InputMapToCircular = true;
+
+    public float forwardInputFilter = 5f;
+    public float turnInputFilter = 5f;
+
     //Variables for movement
     public float Forward
     {
@@ -58,7 +66,7 @@ public class PlayerController : MonoBehaviour
     // This function is called when a move input is detected.
     void OnMove(InputValue movementValue)
     {
-        Debug.Log("moved");
+        //Debug.Log("moved");
         // Convert the input value into a Vector2 for movement.
         Vector2 movementVector = movementValue.Get<Vector2>();
 
@@ -89,22 +97,22 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Check if the object the player collided with has the "PickUp" tag.
-        if (other.gameObject.CompareTag("KeyCollectible"))
-        {
-            // Deactivate the collided object (making it disappear).
-            other.gameObject.SetActive(false);
-            noOfKeys += 1;
-            doorKeyNeededText.SetActive(false);
-            SetKeyCountText();
-        }
-        if (other.gameObject.CompareTag("EnergyCollectible"))
-        {
-            // Deactivate the collided object (making it disappear).
-            Debug.Log(other.gameObject.tag);
-            other.gameObject.SetActive(false);
-            energyLevel += 10;
-            SetEnergyCountText();
-        }
+        //if (other.gameObject.CompareTag("KeyCollectible"))
+        //{
+        //    // Deactivate the collided object (making it disappear).
+        //    other.gameObject.SetActive(false);
+        //    noOfKeys += 1;
+        //    doorKeyNeededText.SetActive(false);
+        //    SetKeyCountText();
+        //}
+        //if (other.gameObject.CompareTag("EnergyCollectible"))
+        //{
+        //    // Deactivate the collided object (making it disappear).
+        //    Debug.Log(other.gameObject.tag);
+        //    other.gameObject.SetActive(false);
+        //    energyLevel += 10;
+        //    SetEnergyCountText();
+        //}
         if (other.gameObject.CompareTag("EnergyPotionCollectible"))
         {
             // Deactivate the collided object (making it disappear).
@@ -130,13 +138,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private float filteredForwardInput = 0f;
-    private float filteredTurnInput = 0f;
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject other = collision.gameObject;
+        if (other.gameObject.CompareTag("KeyCollectible"))
+        {
+            //collision sound here
+            // Deactivate the collided object (making it disappear).
+            other.gameObject.SetActive(false);
+            noOfKeys += 1;
+            //doorKeyNeededText.SetActive(false);
+            SetKeyCountText();
+        }
+        if (other.gameObject.CompareTag("EnergyCollectible"))
+        {
+            //collision sound here
+            // Deactivate the collided object (making it disappear).
+            Debug.Log(other.gameObject.tag);
+            other.gameObject.SetActive(false);
+            energyLevel += 10;
+            SetEnergyCountText();
+        }
+    }
 
-    public bool InputMapToCircular = true;
 
-    public float forwardInputFilter = 5f;
-    public float turnInputFilter = 5f;
 
     void Update()
     {
@@ -155,9 +180,15 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.Q))
+        {
             h = -0.5f;
+            v += 0.1f;
+        }
         else if (Input.GetKey(KeyCode.E))
+        {
             h = 0.5f;
+            v += 0.1f;
+        }
 
 
         //do some filtering of our input as well as clamp to a speed limit
