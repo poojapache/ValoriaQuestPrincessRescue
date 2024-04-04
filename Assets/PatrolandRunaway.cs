@@ -98,7 +98,7 @@ public class PatrolandRunaway : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, enemy.position) < fleeDistance)
         {
-            Debug.LogError("RUNAWAY RUNAWAY ");
+            Debug.Log("RUNAWAY RUNAWAY");
             setState(AIState.runaway);
             return;
         }

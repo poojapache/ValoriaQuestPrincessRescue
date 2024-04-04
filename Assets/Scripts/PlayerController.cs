@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -43,7 +44,15 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameLostGameObject;
     public GameObject gameWonGameObject;
+    public GameObject respawnObject;
     public GameObject backgroundAudio;
+
+    public Animator[] gameDoorAnimator;
+    public Animator[] dummyDoorAnimator;
+
+    [HideInInspector] public int ghost1Energy = 60;
+    [HideInInspector] public int ghost2Energy = 100;
+    [HideInInspector] public int ghost2Gems = 4;
 
     //Variables for movement
     public float Forward
@@ -157,14 +166,9 @@ public class PlayerController : MonoBehaviour
         GameObject other = collision.gameObject;
         if (other.gameObject.CompareTag("KeyCollectible"))
         {
-            //collision sound here
-            audioSource.clip = audioClips[0];
-            audioSource.Play();
+            CollectKey();
             // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
-            noOfKeys += 1;
-            //doorKeyNeededText.SetActive(false);
-            SetKeyCountText();
         }
         if (other.gameObject.CompareTag("EnergyCollectible"))
         {
@@ -227,15 +231,15 @@ public class PlayerController : MonoBehaviour
 
     public void SetEnergyWarningText(int energy)
     {
-        if(energy == 100)
+        if(energy == 2)
         {
 
-            gameInfoText.text = "You need at least 100 energy and 4 gems to defeat the ghost!";
+            gameInfoText.text = "You need at least " + ghost2Energy + " energy and " + ghost2Gems + " gems to defeat the ghost!";
         }
         else
         {
 
-            gameInfoText.text = "You need at least " + energy + " energy level to defeat the ghost!";
+            gameInfoText.text = "You need at least " + ghost1Energy + " energy level to defeat the ghost!";
         }
     }
 
@@ -249,6 +253,7 @@ public class PlayerController : MonoBehaviour
         audioSource.Play();
         noOfKeys += 1;
         SetKeyCountText();
+        SetDoorJam();
     }
 
     public void GameWon()
@@ -278,5 +283,34 @@ public class PlayerController : MonoBehaviour
     {
 
         Application.Quit();
+    }
+
+    public void DoorOpen(Animator animator)
+    {
+        animator.SetInteger("doorVal", 2);
+        audioSource.clip = audioClips[7];
+        audioSource.Play();
+    }
+
+    void SetDoorJam()
+    {
+        gameDoorAnimator[noOfKeys - 1].SetInteger("doorVal", 1);
+        if (noOfKeys == 4)
+        {
+            dummyDoorAnimator[0].SetInteger("doorVal", 1);
+            dummyDoorAnimator[1].SetInteger("doorVal", 1);
+        }
+        else if (noOfKeys == 5) dummyDoorAnimator[2].SetInteger("doorVal", 1);
+        else if (noOfKeys == 6) dummyDoorAnimator[3].SetInteger("doorVal", 1);
+
+        //undo prev door anim
+        if (noOfKeys > 1) gameDoorAnimator[noOfKeys - 2].SetInteger("doorVal", 0);
+        if (noOfKeys == 5)
+        {
+            dummyDoorAnimator[0].SetInteger("doorVal", 0);
+            dummyDoorAnimator[1].SetInteger("doorVal", 0);
+        }
+        else if(noOfKeys == 6) dummyDoorAnimator[2].SetInteger("doorVal", 0);
+        else if(noOfKeys == 7) dummyDoorAnimator[3].SetInteger("doorVal", 0);
     }
 }
