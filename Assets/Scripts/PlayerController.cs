@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     public GameObject gameLostGameObject;
     public GameObject gameWonGameObject;
     public GameObject respawnObject;
+    public TextMeshProUGUI respawnMessage;
+
     public GameObject backgroundAudio;
 
     public Animator[] gameDoorAnimator;
@@ -53,7 +55,6 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int ghost1Energy = 60;
     [HideInInspector] public int ghost2Energy = 100;
     [HideInInspector] public int ghost2Gems = 4;
-
     //Variables for movement
     public float Forward
     {
@@ -195,7 +196,6 @@ public class PlayerController : MonoBehaviour
         if (InputMapToCircular)
         {
             // make coordinates circular
-            //based on http://mathproofs.blogspot.com/2005/07/mapping-square-to-circle.html
             h = h * Mathf.Sqrt(1f - 0.5f * v * v);
             v = v * Mathf.Sqrt(1f - 0.5f * h * h);
 
@@ -312,5 +312,12 @@ public class PlayerController : MonoBehaviour
         }
         else if(noOfKeys == 6) dummyDoorAnimator[2].SetInteger("doorVal", 0);
         else if(noOfKeys == 7) dummyDoorAnimator[3].SetInteger("doorVal", 0);
+    }
+
+    public void PlayDummyDoorAudio()
+    {
+        //collision sound here
+        audioSource.clip = audioClips[8];
+        audioSource.Play();
     }
 }
