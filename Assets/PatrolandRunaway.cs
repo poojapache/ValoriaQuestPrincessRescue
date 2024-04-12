@@ -98,7 +98,7 @@ public class PatrolandRunaway : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, enemy.position) < fleeDistance)
         {
-            Debug.Log("RUNAWAY RUNAWAY");
+            Debug.LogError("RUNAWAY RUNAWAY ");
             setState(AIState.runaway);
             return;
         }
@@ -114,7 +114,7 @@ public class PatrolandRunaway : MonoBehaviour
         // If the agent has reached the current waypoint, move to the next one
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            Debug.Log("Reached waypoint " + currStaticWaypoint);
+            //Debug.Log("Reached waypoint " + currStaticWaypoint);
             currStaticWaypoint = (currStaticWaypoint + 1) % waypoints.Length;
             agent.SetDestination(waypoints[currStaticWaypoint].transform.position);
         } 
@@ -123,7 +123,7 @@ public class PatrolandRunaway : MonoBehaviour
     void SetDestination()
     {
         // Set the destination of the NavMeshAgent to the current waypoint
-        Debug.Log("Moving to waypoint " + currStaticWaypoint);
+        //Debug.Log("Moving to waypoint " + currStaticWaypoint);
         agent.SetDestination(waypoints[currStaticWaypoint].transform.position);
     }
 

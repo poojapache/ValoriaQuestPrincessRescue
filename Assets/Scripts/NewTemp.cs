@@ -1,10 +1,9 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class NewPlayerController : MonoBehaviour
 {
     // Rigidbody of the player.
     private Rigidbody rb;
@@ -47,17 +46,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameLostGameObject;
     public GameObject gameWonGameObject;
-    public GameObject respawnObject;
-    public TextMeshProUGUI respawnMessage;
-
     public GameObject backgroundAudio;
-
-    public Animator[] gameDoorAnimator;
-    public Animator[] dummyDoorAnimator;
-
-    [HideInInspector] public int ghost1Energy = 60;
-    [HideInInspector] public int ghost2Energy = 100;
-    [HideInInspector] public int ghost2Gems = 4;
 
     //Variables for movement
     public float Forward
@@ -146,9 +135,12 @@ public class PlayerController : MonoBehaviour
             if (energyLevel >= other.gameObject.GetComponent<PatrolandRunaway>().energyLevel)
             {
                 doAttack = true;
+                Debug.Log("set attack");
+                audioSource.clip = audioClips[4];
+                audioSource.Play();
                 // Deactivate the collided object (making it disappear).
                 Debug.Log(other.gameObject.tag);
-                StartCoroutine(KillGhostCoroutine(other.gameObject));
+                other.gameObject.SetActive(false);
             }
             else GameLost();
 
@@ -170,9 +162,14 @@ public class PlayerController : MonoBehaviour
         GameObject other = collision.gameObject;
         if (other.gameObject.CompareTag("KeyCollectible"))
         {
-            CollectKey();
+            //collision sound here
+            audioSource.clip = audioClips[0];
+            audioSource.Play();
             // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
+            noOfKeys += 1;
+            //doorKeyNeededText.SetActive(false);
+            SetKeyCountText();
         }
         if (other.gameObject.CompareTag("EnergyCollectible"))
         {
@@ -191,28 +188,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //GetAxisRaw() so we can do filtering here instead of the InputManager
-        float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
-        float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
-
-
-        if (InputMapToCircular)
-        {
-            // make coordinates circular
-            h = h * Mathf.Sqrt(1f - 0.5f * v * v);
-            v = v * Mathf.Sqrt(1f - 0.5f * h * h);
-
-        }
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        h = h * Mathf.Sqrt(1f - 0.5f * v * v);
+        v = v * Mathf.Sqrt(1f - 0.5f * h * h);
 
         if (Input.GetKey(KeyCode.Q))
         {
             h = -0.5f;
-            v += 0.1f;
         }
         else if (Input.GetKey(KeyCode.E))
         {
             h = 0.5f;
-            v += 0.1f;
         }
 
         if (Mathf.Abs(h) > 0 && v == 0)
@@ -220,13 +207,8 @@ public class PlayerController : MonoBehaviour
             v = 0.05f;
         }
 
-
-        //do some filtering of our input as well as clamp to a speed limit
-        filteredForwardInput = Mathf.Clamp(Mathf.Lerp(filteredForwardInput, v,
-            Time.deltaTime * forwardInputFilter), -speed, speed);
-
-        filteredTurnInput = Mathf.Lerp(filteredTurnInput, h,
-            Time.deltaTime * turnInputFilter);
+        filteredForwardInput = Mathf.Clamp(Mathf.Lerp(filteredForwardInput, v, Time.deltaTime * forwardInputFilter), -speed, speed);
+        filteredTurnInput = Mathf.Lerp(filteredTurnInput, h, Time.deltaTime * turnInputFilter);
 
         Forward = filteredForwardInput;
         Turn = filteredTurnInput;
@@ -234,15 +216,15 @@ public class PlayerController : MonoBehaviour
 
     public void SetEnergyWarningText(int energy)
     {
-        if (energy == 2)
+        if (energy == 100)
         {
 
-            gameInfoText.text = "You need at least " + ghost2Energy + " energy and " + ghost2Gems + " gems to defeat the ghost!";
+            gameInfoText.text = "You need at least 100 energy and 4 gems to defeat the ghost!";
         }
         else
         {
 
-            gameInfoText.text = "You need at least " + ghost1Energy + " energy level to defeat the ghost!";
+            gameInfoText.text = "You need at least " + energy + " energy level to defeat the ghost!";
         }
     }
 
@@ -256,7 +238,6 @@ public class PlayerController : MonoBehaviour
         audioSource.Play();
         noOfKeys += 1;
         SetKeyCountText();
-        SetDoorJam();
     }
 
     public void GameWon()
@@ -286,49 +267,5 @@ public class PlayerController : MonoBehaviour
     {
 
         Application.Quit();
-    }
-
-    public void DoorOpen(Animator animator)
-    {
-        animator.SetInteger("doorVal", 2);
-        audioSource.clip = audioClips[7];
-        audioSource.Play();
-    }
-
-    void SetDoorJam()
-    {
-        gameDoorAnimator[noOfKeys - 1].SetInteger("doorVal", 1);
-        if (noOfKeys == 4)
-        {
-            dummyDoorAnimator[0].SetInteger("doorVal", 1);
-            dummyDoorAnimator[1].SetInteger("doorVal", 1);
-        }
-        else if (noOfKeys == 5) dummyDoorAnimator[2].SetInteger("doorVal", 1);
-        else if (noOfKeys == 6) dummyDoorAnimator[3].SetInteger("doorVal", 1);
-
-        //undo prev door anim
-        if (noOfKeys > 1) gameDoorAnimator[noOfKeys - 2].SetInteger("doorVal", 0);
-        if (noOfKeys == 5)
-        {
-            dummyDoorAnimator[0].SetInteger("doorVal", 0);
-            dummyDoorAnimator[1].SetInteger("doorVal", 0);
-        }
-        else if (noOfKeys == 6) dummyDoorAnimator[2].SetInteger("doorVal", 0);
-        else if (noOfKeys == 7) dummyDoorAnimator[3].SetInteger("doorVal", 0);
-    }
-
-    public void PlayDummyDoorAudio()
-    {
-        //collision sound here
-        audioSource.clip = audioClips[8];
-        audioSource.Play();
-    }
-
-    private IEnumerator KillGhostCoroutine(GameObject ghost)
-    {
-        yield return new WaitForSeconds(0.1f);
-        audioSource.clip = audioClips[4];
-        audioSource.Play();
-        ghost.SetActive(false);
     }
 }

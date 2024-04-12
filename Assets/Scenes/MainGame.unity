@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 22183127}
   - component: {fileID: 22183126}
   - component: {fileID: 22183125}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 46169932}
   - component: {fileID: 46169931}
   - component: {fileID: 46169930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46169929}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.400024, y: 5.600006, z: 14.7}
+  m_LocalPosition: {x: -11.400024, y: 5.6, z: 14.7}
   m_LocalScale: {x: 1, y: 10, z: 45}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -960,6 +960,7 @@ MonoBehaviour:
   noOfKeysRequired: 3
   isDummyDoor: 0
   respawnTransform: {fileID: 0}
+  respawnRoomLight: {fileID: 0}
 --- !u!54 &58912314
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1459,7 +1460,7 @@ GameObject:
   - component: {fileID: 106560592}
   - component: {fileID: 106560591}
   - component: {fileID: 106560590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2297,7 +2298,7 @@ GameObject:
   - component: {fileID: 159258956}
   - component: {fileID: 159258955}
   - component: {fileID: 159258954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2394,7 +2395,7 @@ GameObject:
   - component: {fileID: 169605334}
   - component: {fileID: 169605333}
   - component: {fileID: 169605332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2472,7 +2473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169605331}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.699951, y: 5.600006, z: 14.6}
+  m_LocalPosition: {x: 10.699951, y: 5.6, z: 14.6}
   m_LocalScale: {x: 1, y: 10, z: 45}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3304,7 +3305,7 @@ GameObject:
   - component: {fileID: 258024545}
   - component: {fileID: 258024544}
   - component: {fileID: 258024543}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3631,14 +3632,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274388321}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.038}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 0.30947223, y: 0.26713666, z: 0.30947223}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 616450700}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.014, y: 1.9940426}
@@ -3898,6 +3899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ca81cdd988abf48a23cf4c403c516d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doAttack: 0
   speed: 4
   noOfKeys: 0
   energyLevel: 0
@@ -3955,7 +3957,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &291230710
 MonoBehaviour:
@@ -4356,7 +4358,7 @@ GameObject:
   - component: {fileID: 299137214}
   - component: {fileID: 299137213}
   - component: {fileID: 299137212}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4984,7 +4986,7 @@ GameObject:
   - component: {fileID: 352433325}
   - component: {fileID: 352433324}
   - component: {fileID: 352433323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5081,7 +5083,7 @@ GameObject:
   - component: {fileID: 352788599}
   - component: {fileID: 352788598}
   - component: {fileID: 352788597}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5678,7 +5680,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.9
+  m_fontSize: 26.2
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5754,7 +5756,7 @@ GameObject:
   - component: {fileID: 400020307}
   - component: {fileID: 400020306}
   - component: {fileID: 400020305}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6644,7 +6646,7 @@ GameObject:
   - component: {fileID: 456835708}
   - component: {fileID: 456835707}
   - component: {fileID: 456835706}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7409,7 +7411,7 @@ GameObject:
   - component: {fileID: 537607283}
   - component: {fileID: 537607282}
   - component: {fileID: 537607281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8611,6 +8613,7 @@ MonoBehaviour:
   noOfKeysRequired: 5
   isDummyDoor: 0
   respawnTransform: {fileID: 0}
+  respawnRoomLight: {fileID: 0}
 --- !u!54 &616450695
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8815,7 +8818,7 @@ GameObject:
   - component: {fileID: 627692185}
   - component: {fileID: 627692184}
   - component: {fileID: 627692183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9306,7 +9309,7 @@ GameObject:
   - component: {fileID: 648386480}
   - component: {fileID: 648386479}
   - component: {fileID: 648386478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10222,7 +10225,7 @@ GameObject:
   - component: {fileID: 695158771}
   - component: {fileID: 695158770}
   - component: {fileID: 695158769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10300,7 +10303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695158768}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.30004883, y: 5.600006, z: -7.5}
+  m_LocalPosition: {x: -0.30004883, y: 5.6, z: -7.5}
   m_LocalScale: {x: 1, y: 10, z: 21.1795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10791,7 +10794,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.4
+  m_fontSize: 26.05
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11153,7 +11156,7 @@ GameObject:
   - component: {fileID: 748364781}
   - component: {fileID: 748364780}
   - component: {fileID: 748364779}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12034,7 +12037,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 29.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13031,6 +13034,7 @@ MonoBehaviour:
   noOfKeysRequired: 6
   isDummyDoor: 1
   respawnTransform: {fileID: 104758147}
+  respawnRoomLight: {fileID: 1078866608}
 --- !u!54 &950626931
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13283,7 +13287,7 @@ GameObject:
   - component: {fileID: 961512419}
   - component: {fileID: 961512418}
   - component: {fileID: 961512417}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13380,7 +13384,7 @@ GameObject:
   - component: {fileID: 961748243}
   - component: {fileID: 961748242}
   - component: {fileID: 961748241}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13566,6 +13570,10 @@ MonoBehaviour:
   smoothSpeed: 0.125
   locationOffset: {x: 0, y: 7.05, z: -6.58}
   rotationOffset: {x: 20, y: 0, z: 0}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  yPositionOffset: 7.01
 --- !u!1 &965903812
 GameObject:
   m_ObjectHideFlags: 0
@@ -14335,7 +14343,7 @@ GameObject:
   - component: {fileID: 1045514982}
   - component: {fileID: 1045514981}
   - component: {fileID: 1045514980}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14486,6 +14494,7 @@ MonoBehaviour:
   noOfKeysRequired: 4
   isDummyDoor: 1
   respawnTransform: {fileID: 1141474103}
+  respawnRoomLight: {fileID: 2138418568}
 --- !u!54 &1056911215
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14707,7 +14716,7 @@ GameObject:
   - component: {fileID: 1067893943}
   - component: {fileID: 1067893942}
   - component: {fileID: 1067893941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14804,7 +14813,7 @@ GameObject:
   - component: {fileID: 1068793587}
   - component: {fileID: 1068793586}
   - component: {fileID: 1068793585}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15330,7 +15339,7 @@ GameObject:
   - component: {fileID: 1085287146}
   - component: {fileID: 1085287145}
   - component: {fileID: 1085287144}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15427,7 +15436,7 @@ GameObject:
   - component: {fileID: 1106808769}
   - component: {fileID: 1106808768}
   - component: {fileID: 1106808767}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15505,7 +15514,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106808766}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6.33, y: 5.506, z: 36.5}
+  m_LocalPosition: {x: 6.33, y: 5.6, z: 36.5}
   m_LocalScale: {x: 1, y: 10, z: 7.969518}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16171,7 +16180,7 @@ GameObject:
   - component: {fileID: 1152663533}
   - component: {fileID: 1152663532}
   - component: {fileID: 1152663531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18579,7 +18588,7 @@ GameObject:
   - component: {fileID: 1356168641}
   - component: {fileID: 1356168640}
   - component: {fileID: 1356168639}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18676,7 +18685,7 @@ GameObject:
   - component: {fileID: 1374435178}
   - component: {fileID: 1374435177}
   - component: {fileID: 1374435176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18955,7 +18964,7 @@ GameObject:
   - component: {fileID: 1390052989}
   - component: {fileID: 1390052988}
   - component: {fileID: 1390052987}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19076,6 +19085,7 @@ MonoBehaviour:
   noOfKeysRequired: 2
   isDummyDoor: 0
   respawnTransform: {fileID: 0}
+  respawnRoomLight: {fileID: 0}
 --- !u!54 &1391314907
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19414,7 +19424,7 @@ GameObject:
   - component: {fileID: 1401758908}
   - component: {fileID: 1401758907}
   - component: {fileID: 1401758906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19511,7 +19521,7 @@ GameObject:
   - component: {fileID: 1410844115}
   - component: {fileID: 1410844114}
   - component: {fileID: 1410844113}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19694,7 +19704,7 @@ GameObject:
   - component: {fileID: 1424224782}
   - component: {fileID: 1424224781}
   - component: {fileID: 1424224780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19791,7 +19801,7 @@ GameObject:
   - component: {fileID: 1431538849}
   - component: {fileID: 1431538848}
   - component: {fileID: 1431538847}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20003,6 +20013,7 @@ MonoBehaviour:
   noOfKeysRequired: 4
   isDummyDoor: 0
   respawnTransform: {fileID: 0}
+  respawnRoomLight: {fileID: 0}
 --- !u!54 &1471205572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20788,7 +20799,7 @@ GameObject:
   - component: {fileID: 1512955492}
   - component: {fileID: 1512955491}
   - component: {fileID: 1512955490}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20983,7 +20994,7 @@ GameObject:
   - component: {fileID: 1513849104}
   - component: {fileID: 1513849103}
   - component: {fileID: 1513849102}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21104,6 +21115,7 @@ MonoBehaviour:
   noOfKeysRequired: 7
   isDummyDoor: 0
   respawnTransform: {fileID: 0}
+  respawnRoomLight: {fileID: 0}
 --- !u!54 &1515817907
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21422,7 +21434,7 @@ GameObject:
   - component: {fileID: 1542740115}
   - component: {fileID: 1542740114}
   - component: {fileID: 1542740113}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21602,7 +21614,7 @@ GameObject:
   - component: {fileID: 1547187512}
   - component: {fileID: 1547187511}
   - component: {fileID: 1547187510}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22764,7 +22776,7 @@ GameObject:
   - component: {fileID: 1600652919}
   - component: {fileID: 1600652918}
   - component: {fileID: 1600652917}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23670,7 +23682,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.3
+  m_fontSize: 25
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -23756,6 +23768,7 @@ MonoBehaviour:
   noOfKeysRequired: 4
   isDummyDoor: 1
   respawnTransform: {fileID: 1023730435147344072}
+  respawnRoomLight: {fileID: 722691177}
 --- !u!54 &1691341551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23874,7 +23887,7 @@ GameObject:
   - component: {fileID: 1692393408}
   - component: {fileID: 1692393407}
   - component: {fileID: 1692393406}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24083,7 +24096,7 @@ GameObject:
   - component: {fileID: 1708439377}
   - component: {fileID: 1708439376}
   - component: {fileID: 1708439375}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24569,7 +24582,7 @@ GameObject:
   - component: {fileID: 1740516366}
   - component: {fileID: 1740516365}
   - component: {fileID: 1740516364}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25051,7 +25064,7 @@ GameObject:
   - component: {fileID: 1776107837}
   - component: {fileID: 1776107836}
   - component: {fileID: 1776107835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25148,7 +25161,7 @@ GameObject:
   - component: {fileID: 1777662683}
   - component: {fileID: 1777662682}
   - component: {fileID: 1777662681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25792,7 +25805,7 @@ GameObject:
   - component: {fileID: 1848459996}
   - component: {fileID: 1848459995}
   - component: {fileID: 1848459994}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26137,7 +26150,7 @@ GameObject:
   - component: {fileID: 1885803519}
   - component: {fileID: 1885803518}
   - component: {fileID: 1885803517}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26516,7 +26529,7 @@ GameObject:
   - component: {fileID: 1899911595}
   - component: {fileID: 1899911594}
   - component: {fileID: 1899911593}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26594,7 +26607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899911592}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6.52, y: 5.5106, z: 36.799995}
+  m_LocalPosition: {x: -6.52, y: 5.6, z: 36.799995}
   m_LocalScale: {x: 1, y: 10, z: 7.969518}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27806,6 +27819,7 @@ MonoBehaviour:
   noOfKeysRequired: 5
   isDummyDoor: 1
   respawnTransform: {fileID: 1216331550}
+  respawnRoomLight: {fileID: 722691177}
 --- !u!54 &1962133582
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28450,7 +28464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1991623698
 Transform:
   m_ObjectHideFlags: 0
@@ -28744,6 +28758,7 @@ MonoBehaviour:
   noOfKeysRequired: 6
   isDummyDoor: 0
   respawnTransform: {fileID: 0}
+  respawnRoomLight: {fileID: 0}
 --- !u!54 &2008346840
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31241,7 +31256,7 @@ GameObject:
   - component: {fileID: 2144035804}
   - component: {fileID: 2144035803}
   - component: {fileID: 2144035802}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32669,14 +32684,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026194698761255426}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -17.26, y: 0.51, z: 45.04}
+  m_LocalRotation: {x: 0, y: -0.6431867, z: 0, w: 0.7657095}
+  m_LocalPosition: {x: -18.948742, y: 0.51004744, z: 47.455284}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 387382552}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1026194698761255426
 GameObject:
   m_ObjectHideFlags: 0
@@ -35229,6 +35244,7 @@ MonoBehaviour:
   noOfKeysRequired: 1
   isDummyDoor: 0
   respawnTransform: {fileID: 0}
+  respawnRoomLight: {fileID: 0}
 --- !u!4 &8130921515398444983
 Transform:
   m_ObjectHideFlags: 0

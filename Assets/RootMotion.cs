@@ -17,6 +17,7 @@ public class RootMotion : MonoBehaviour
     public float rootTurnSpeed = 1f;
     float forwardMove;
     float turnMove;
+    private bool doAttack;
 
     private void Awake()
     {
@@ -36,21 +37,27 @@ public class RootMotion : MonoBehaviour
     {
         forwardMove = pCtrl.Forward;
         turnMove = pCtrl.Turn;
+        doAttack = pCtrl.doAttack;
     }
 
     private void FixedUpdate()
     {
         ani.SetFloat("velx", turnMove);
         ani.SetFloat("vely", forwardMove);
+        ani.SetBool("doAttack", doAttack);
+        if (doAttack)
+        {
+            Debug.Log("set anim attacked");
+            pCtrl.doAttack = false;
+
+        }
         ani.speed = animationSpeed;
     }
 
     void OnAnimatorMove()
     {
-        Vector3 newRootPosition;
-        Quaternion newRootRotation;
-        newRootPosition = ani.rootPosition;
-        newRootRotation = ani.rootRotation;
+        Vector3 newRootPosition = ani.rootPosition;
+        Quaternion newRootRotation = ani.rootRotation;
 
         this.transform.position = Vector3.LerpUnclamped(this.transform.position, newRootPosition, rootMoveSpeed);
         this.transform.rotation = Quaternion.LerpUnclamped(this.transform.rotation, newRootRotation, rootTurnSpeed);

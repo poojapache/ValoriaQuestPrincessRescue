@@ -13,6 +13,7 @@ public class GameDoorController : MonoBehaviour
     public Transform respawnTransform;
     private GameObject player;
     private GameObject keyInfoGameObject;
+    public GameObject respawnRoomLight;
 
     private void Awake()
     {
@@ -80,19 +81,20 @@ public class GameDoorController : MonoBehaviour
         //show message on screen
         playerController.respawnObject.SetActive(true);
         playerController.respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 5... ";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         playerController.respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 4... ";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         playerController.respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 3...";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         playerController.respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 2...";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         playerController.respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 1...";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         //close door
         animator.SetInteger("doorVal", 3);
         keyInfoGameObject.SetActive(true);
         //adjust lighting
+        respawnRoomLight.SetActive(false);
         // respawn
         player.transform.position = respawnTransform.position;
         player.transform.rotation = respawnTransform.rotation;
@@ -100,6 +102,8 @@ public class GameDoorController : MonoBehaviour
         playerController.enabled = true;
         //hide respawn message
         playerController.respawnObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        respawnRoomLight.SetActive(true);
     }
 
     private IEnumerator GameWonCoroutine()
