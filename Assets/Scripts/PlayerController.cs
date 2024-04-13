@@ -32,7 +32,12 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI keyCountText;
     public TextMeshProUGUI GemCountText;
     public TextMeshProUGUI energyCountText;
-    public TextMeshProUGUI gameInfoText;
+    public GameObject gameInfo;
+    private TextMeshProUGUI gameInfoText;
+
+    public GameObject keyImage;
+    public GameObject energyImage;
+    public GameObject gemImage;
 
     private float filteredForwardInput = 0f;
     private float filteredTurnInput = 0f;
@@ -78,6 +83,7 @@ public class PlayerController : MonoBehaviour
         // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        gameInfoText = gameInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         noOfKeys = 0;
         energyLevel = 0;
         noOfGems = 0;
@@ -129,6 +135,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject.tag);
             other.gameObject.SetActive(false);
             energyLevel += 50;
+            StartCoroutine(UIAnimationGhostCoroutine(energyImage));
             SetEnergyCountText();
         }
         // Check if the object the player collided with has the "PickUp" tag.
@@ -139,6 +146,7 @@ public class PlayerController : MonoBehaviour
             // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
             noOfGems += 1;
+            StartCoroutine(UIAnimationGhostCoroutine(gemImage));
             SetGemCountText();
         }
         if (other.gameObject.CompareTag("Ghost"))
@@ -183,7 +191,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject.tag);
 
             other.transform.parent.gameObject.SetActive(false);
-
+            StartCoroutine(UIAnimationGhostCoroutine(energyImage));
             energyLevel += 10;
             SetEnergyCountText();
         }
@@ -236,25 +244,26 @@ public class PlayerController : MonoBehaviour
     {
         if (energy == 2)
         {
-
-            gameInfoText.text = "You need at least " + ghost2Energy + " energy and " + ghost2Gems + " gems to defeat the ghost!";
+            gameInfo.SetActive(true);
+            gameInfoText.GetComponent<TextMeshProUGUI>().text = "You need at least " + ghost2Energy + " energy and " + ghost2Gems + " gems to defeat the ghost!";
         }
         else
         {
-
+            gameInfo.SetActive(true);
             gameInfoText.text = "You need at least " + ghost1Energy + " energy level to defeat the ghost!";
         }
     }
 
     public void ClearGameInfoText()
     {
-        gameInfoText.text = "";
+        gameInfo.SetActive(false);
     }
     public void CollectKey()
     {//collision sound here
         audioSource.clip = audioClips[0];
         audioSource.Play();
         noOfKeys += 1;
+        StartCoroutine(UIAnimationGhostCoroutine(keyImage));
         SetKeyCountText();
         SetDoorJam();
     }
@@ -326,9 +335,16 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator KillGhostCoroutine(GameObject ghost)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         audioSource.clip = audioClips[4];
         audioSource.Play();
         ghost.SetActive(false);
+    }
+
+    private IEnumerator UIAnimationGhostCoroutine(GameObject icon)
+    {
+        icon.GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(2f);
+        icon.GetComponent<Animation>().Stop();
     }
 }
