@@ -25,7 +25,7 @@ public class PatrolAndChase : MonoBehaviour
     {
         enemy = GameObject.FindWithTag("Player").transform;
         energyLevel = GameObject.FindWithTag("Player").GetComponent<PlayerController>().ghost1Energy;
-        agent.speed = 20;
+        agent.speed = 10;
         agent.acceleration = 8;
         agent.angularSpeed = 120;
         setState(AIState.staticWaddling);

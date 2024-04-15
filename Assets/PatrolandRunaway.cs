@@ -27,7 +27,7 @@ public class PatrolandRunaway : MonoBehaviour
     {
         enemy = GameObject.FindWithTag("Player").transform;
         energyLevel = GameObject.FindWithTag("Player").GetComponent<PlayerController>().ghost2Energy;
-        agent.speed = 15;
+        agent.speed = 10;
         agent.acceleration = 8;
         agent.angularSpeed = 120;
         setState(AIState.staticWaddling);

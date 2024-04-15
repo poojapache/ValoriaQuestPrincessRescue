@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int ghost2Energy = 100;
     [HideInInspector] public int ghost2Gems = 4;
 
+    public GameObject bigGhost;
+
     //Variables for movement
     public float Forward
     {
@@ -162,11 +164,12 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.gameObject.GetComponent<PatrolAndChase>() != null && energyLevel >= ghost2Energy)
             {
-                doAttack = true;
-                CollectKey();
-                // Deactivate the collided object (making it disappear).
-                Debug.Log(other.gameObject.tag);
-                StartCoroutine(KillGhostCoroutine(other.gameObject));
+                //doAttack = true;
+                //CollectKey();
+                //// Deactivate the collided object (making it disappear).
+                //Debug.Log(other.gameObject.tag);
+                //StartCoroutine(KillGhostCoroutine(other.gameObject));
+                GameLost();
             }
             else GameLost();
 
@@ -189,6 +192,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("KeyCollectible"))
         {
             CollectKey();
+            if(noOfKeys == 7)
+            {
+                StartCoroutine(KillGhostCoroutine(bigGhost));
+            }
             // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
         }
