@@ -151,9 +151,19 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Ghost"))
         {
-            if (energyLevel >= other.gameObject.GetComponent<PatrolandRunaway>().energyLevel)
+            
+            if (other.gameObject.GetComponent<PatrolandRunaway>() != null && energyLevel >= ghost1Energy)
             {
                 doAttack = true;
+                CollectKey();
+                // Deactivate the collided object (making it disappear).
+                Debug.Log(other.gameObject.tag);
+                StartCoroutine(KillGhostCoroutine(other.gameObject));
+            }
+            else if (other.gameObject.GetComponent<PatrolAndChase>() != null && energyLevel >= ghost2Energy)
+            {
+                doAttack = true;
+                CollectKey();
                 // Deactivate the collided object (making it disappear).
                 Debug.Log(other.gameObject.tag);
                 StartCoroutine(KillGhostCoroutine(other.gameObject));

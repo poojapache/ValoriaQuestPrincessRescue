@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PatrolandRunaway : MonoBehaviour
 {
     public GameObject[] waypoints;
-    public NavMeshAgent agent;
+    public UnityEngine.AI.NavMeshAgent agent;
     private bool movingBool = false;
     public AIState aiState;
     private int currStaticWaypoint = 0;
-    public Transform enemy; // Reference to the enemy GameObject
-    public float fleeDistance = 8f; // Distance at which the agent starts fleeing from the enemy
-    [SerializeField] private float displacementDist = 8f;
+    public float fleeDistance = 30f; // Distance at which the agent starts fleeing from the enemy
+    [SerializeField] private float displacementDist = 20f;
     //public GameObject keyPrefab;
-    public int energyLevel;
+    public bool hitWall = false;
+    private int energyLevel;
+    private Transform enemy; // Reference to the enemy GameObject
 
     public enum AIState
     {
@@ -25,8 +25,10 @@ public class PatrolandRunaway : MonoBehaviour
 
     void Start()
     {
-        agent.speed = 6;
-        agent.acceleration = 3;
+        enemy = GameObject.FindWithTag("Player").transform;
+        energyLevel = GameObject.FindWithTag("Player").GetComponent<PlayerController>().ghost2Energy;
+        agent.speed = 15;
+        agent.acceleration = 8;
         agent.angularSpeed = 120;
         setState(AIState.staticWaddling);
     }
@@ -50,9 +52,11 @@ public class PatrolandRunaway : MonoBehaviour
         switch (aiState)
         {
             case AIState.staticWaddling:
+                print("static");
                 updateToStaticWayPoint();
                 break;
             case AIState.runaway:
+                print("runaway");
                 updatePlayerRunaway();
                 break;
         }
@@ -61,29 +65,22 @@ public class PatrolandRunaway : MonoBehaviour
     void updatePlayerRunaway()
     {
 
-        if (enemy != null && Vector3.Distance(transform.position, enemy.position) < fleeDistance)
+        if (enemy != null && Vector3.Distance(transform.position, enemy.position) < 30f)
         {
-            /*
-            // Calculate a destination that moves away from the enemy
-            Vector3 fleeDirection = transform.position - enemy.position;
-            Vector3 fleeDestination = transform.position + fleeDirection.normalized * fleeDistance;
+            if (hitWall == false)
+            {
+                Vector3 fleeDirection = (enemy.position - transform.position).normalized;
+                Vector3 fleeDestination = transform.position - (fleeDirection * 15f);
 
-            // Set the destination to the flee destination
-            agent.SetDestination(fleeDestination);
-            
-
-            Vector3 normDir = (enemy.position - transform.position).normalized;
-
-            normDir = Quaternion.AngleAxis(Random.Range(0, 180), Vector3.up) * normDir;
-            //normDir = Quaternion.AngleAxis(45, Vector3.up) * normDir;
-
-            MoveToPos(transform.position - (normDir * displacementDist));
-            */
-            Vector3 fleeDirection = transform.position - enemy.position;
-            Vector3 fleeDestination = transform.position + fleeDirection.normalized * fleeDistance;
-
-            // Set the destination to the flee destination
-            agent.SetDestination(fleeDestination);
+                // Set the destination to the flee destination
+                agent.SetDestination(fleeDestination);
+            }
+            else
+            {
+                int randomWaypointIndex = Random.Range(0, 3);
+                transform.position = waypoints[randomWaypointIndex].transform.position;
+                hitWall = false;
+            }
         }
         else
         {
@@ -96,9 +93,9 @@ public class PatrolandRunaway : MonoBehaviour
 
     void updateToStaticWayPoint()
     {
-        if(Vector3.Distance(transform.position, enemy.position) < fleeDistance)
+        if (Vector3.Distance(transform.position, enemy.position) < fleeDistance)
         {
-            Debug.LogError("RUNAWAY RUNAWAY ");
+            Debug.Log("RUNAWAY RUNAWAY ");
             setState(AIState.runaway);
             return;
         }
@@ -109,21 +106,20 @@ public class PatrolandRunaway : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No waypoints assigned to the WaypointNavigation script attached ");
+            Debug.Log("No waypoints assigned to the WaypointNavigation script attached ");
         }
         // If the agent has reached the current waypoint, move to the next one
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            //Debug.Log("Reached waypoint " + currStaticWaypoint);
+           //Debug.Log("Reached waypoint " + currStaticWaypoint);
             currStaticWaypoint = (currStaticWaypoint + 1) % waypoints.Length;
             agent.SetDestination(waypoints[currStaticWaypoint].transform.position);
-        } 
+        }
     }
 
     void SetDestination()
     {
         // Set the destination of the NavMeshAgent to the current waypoint
-        //Debug.Log("Moving to waypoint " + currStaticWaypoint);
         agent.SetDestination(waypoints[currStaticWaypoint].transform.position);
     }
 
@@ -135,14 +131,17 @@ public class PatrolandRunaway : MonoBehaviour
 
     private void OnTriggerEnter(Collider c)
     {
-        if (c.gameObject.CompareTag("Player"))
+        //if (c.gameObject.CompareTag("Player"))
+        //{
+        //    // Debug.Log("key should appear; ghost disappears");
+        //    Vector3 keyPosition = transform.position;
+        //    keyPosition.y = 7f;
+        //}
+        if (c.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("key should appear; ghost disappears");
-            Vector3 keyPosition = transform.position;
-            keyPosition.y = 7f;
-            //Instantiate(keyPrefab, keyPosition, Quaternion.identity);
-            c.gameObject.GetComponent<PlayerController>().CollectKey();
+            hitWall = true;
         }
     }
-
 }
+
+

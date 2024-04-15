@@ -73,7 +73,7 @@ public class GameDoorController : MonoBehaviour
 
     private IEnumerator RespawnControllerCoroutine()
     {
-        yield return new WaitForSeconds(2.1f);
+        yield return new WaitForSeconds(1.1f);
         //audio
         playerController.PlayDummyDoorAudio();
         //disable player controller
@@ -108,7 +108,7 @@ public class GameDoorController : MonoBehaviour
 
     private IEnumerator GameWonCoroutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.1f);
         playerController.GameWon();
 
     }
