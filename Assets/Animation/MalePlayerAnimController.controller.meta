@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Scene1.unity.meta
+guid: 9da36d9d21d792e409dfe0e5ecde2e1b
+DefaultImporter:
+========
 guid: 4efc2e376f115d74b84fe7311cdbb145
 NativeFormatImporter:
+>>>>>>>> sanjana1:Assets/Animation/MalePlayerAnimController.controller.meta
   externalObjects: {}
   mainObjectFileID: 9100000
   userData: 
