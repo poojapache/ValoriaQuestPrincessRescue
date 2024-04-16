@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int ghost2Gems = 4;
 
     public GameObject bigGhost;
+    public GameObject malePlayer;
+    public GameObject femalePlayer;
 
     //Variables for movement
     public float Forward
@@ -83,6 +85,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Get and store the Rigidbody component attached to the player.
+        if(CharcaterSelector.character == 1)
+        {
+            malePlayer.SetActive(false);
+            femalePlayer.SetActive(true);
+        }
+        else
+        {
+            malePlayer.SetActive(true);
+            femalePlayer.SetActive(false);
+        }
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         gameInfoText = gameInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
