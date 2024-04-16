@@ -373,7 +373,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 61ce721a4339c0242a52fba88b7eef01, type: 2}
+      objectReference: {fileID: 2100000, guid: 4847b27f3c1d69a45a08be01241c3647, type: 2}
     - target: {fileID: 919132149155446097, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Name
       value: Royal Chair (4)
@@ -407,7 +407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -1113,7 +1113,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 61ce721a4339c0242a52fba88b7eef01, type: 2}
+      objectReference: {fileID: 2100000, guid: 4847b27f3c1d69a45a08be01241c3647, type: 2}
     - target: {fileID: 919132149155446097, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Name
       value: Royal Chair (1)
@@ -2056,7 +2056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -3923,11 +3923,11 @@ PrefabInstance:
     - target: {fileID: 1439710558865453066, guid: 3a2d2a07b6b60064da533e43d41cac38, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: de48523158ed9b04facec36e55f78400, type: 2}
+      objectReference: {fileID: 2100000, guid: 4847b27f3c1d69a45a08be01241c3647, type: 2}
     - target: {fileID: 5900427171867543068, guid: 3a2d2a07b6b60064da533e43d41cac38, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: db6fc4f14179a2d4caf2123c599df3a7, type: 2}
+      objectReference: {fileID: 2100000, guid: 4847b27f3c1d69a45a08be01241c3647, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a2d2a07b6b60064da533e43d41cac38, type: 3}
 --- !u!1001 &944412342
@@ -3947,7 +3947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -4795,7 +4795,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 61ce721a4339c0242a52fba88b7eef01, type: 2}
+      objectReference: {fileID: 2100000, guid: 4847b27f3c1d69a45a08be01241c3647, type: 2}
     - target: {fileID: 919132149155446097, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Name
       value: Royal Chair (5)
@@ -4904,7 +4904,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 61ce721a4339c0242a52fba88b7eef01, type: 2}
+      objectReference: {fileID: 2100000, guid: 4847b27f3c1d69a45a08be01241c3647, type: 2}
     - target: {fileID: 919132149155446097, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Name
       value: Royal Chair
@@ -5142,7 +5142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -5579,7 +5579,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 61ce721a4339c0242a52fba88b7eef01, type: 2}
+      objectReference: {fileID: 2100000, guid: 4847b27f3c1d69a45a08be01241c3647, type: 2}
     - target: {fileID: 919132149155446097, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Name
       value: Royal Chair (3)
@@ -5657,7 +5657,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 61ce721a4339c0242a52fba88b7eef01, type: 2}
+      objectReference: {fileID: 2100000, guid: 4847b27f3c1d69a45a08be01241c3647, type: 2}
     - target: {fileID: 919132149155446097, guid: 4fa0d43e042789a4eae1e7f102db278f, type: 3}
       propertyPath: m_Name
       value: Royal Chair (2)
@@ -6557,7 +6557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -6963,7 +6963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: 22f72f122dfecfe41bc301f345b57a5d, type: 3}
       propertyPath: m_LocalScale.x
