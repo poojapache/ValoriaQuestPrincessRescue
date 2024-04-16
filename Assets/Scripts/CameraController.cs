@@ -1,26 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class CameraController : MonoBehaviour
+//{
+//    public Transform target;
+//    public float smoothSpeed = 0.125f;
+//    public Vector3 locationOffset;
+//    public Vector3 rotationOffset;
+
+//    void FixedUpdate()
+//    {
+//        Vector3 desiredPosition = target.position + target.rotation * locationOffset;
+//        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+//        transform.position = smoothedPosition;
+
+//        Quaternion desiredrotation = target.rotation * Quaternion.Euler(rotationOffset);
+//        Quaternion smoothedrotation = Quaternion.Lerp(transform.rotation, desiredrotation, smoothSpeed);
+//        transform.rotation = smoothedrotation;
+//    }
+
+//}
+
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Reference to the player GameObject.
-    public GameObject player;
+    public Transform target;
+    public float smoothSpeed = 0.125f;
+    public Vector3 locationOffset;
+    public Vector3 rotationOffset;
+    public LayerMask obstacleMask; // Define layers that represent obstacles (e.g., walls)
+    public float yPositionOffset = 3.25f; // Offset to move the camera higher when near a wall
 
-    // The distance between the camera and the player.
-    private Vector3 offset;
-
-    // Start is called before the first frame update.
-    void Start()
+    void FixedUpdate()
     {
-        // Calculate the initial offset between the camera's position and the player's position.
-        offset = transform.position - player.transform.position;
-    }
+        Vector3 desiredPosition = target.position + target.rotation * locationOffset;
 
-    // LateUpdate is called once per frame after all Update functions have been completed.
-    void LateUpdate()
-    {
-        // Maintain the same offset between the camera and player throughout the game.
-        transform.position = player.transform.position + offset;
+        // Cast a ray from the camera towards the target (player).
+        RaycastHit hit;
+        if (Physics.Raycast(target.position, desiredPosition - target.position, out hit, Vector3.Distance(target.position, desiredPosition), obstacleMask))
+        {
+            // If the ray hits an obstacle, move the camera to the other side of the obstacle.
+            desiredPosition = hit.point + hit.normal * 0.1f; // Add a small offset to avoid clipping into the wall
+
+            // Adjust y position to move the camera higher when near a wall
+            desiredPosition.y = yPositionOffset;
+        }
+
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        transform.position = smoothedPosition;
+
+        Quaternion desiredRotation = target.rotation * Quaternion.Euler(rotationOffset);
+        Quaternion smoothedRotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
+        transform.rotation = smoothedRotation;
     }
 }
