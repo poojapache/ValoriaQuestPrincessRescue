@@ -7,6 +7,7 @@ public class GameStarter : MonoBehaviour
 {
     public GameObject currentPanel; //The current Instructions Panel
     public GameObject previousPanel; //The Game Menu Panel
+    public GameObject nextPanel; //The Game Menu Panel
 
     public void Start()
     {
@@ -16,8 +17,8 @@ public class GameStarter : MonoBehaviour
     // Start is called before the first frame update
     public void ContinueGame()
     {
-        SceneManager.LoadScene(1);
-        Time.timeScale = 1f;
+        currentPanel.SetActive(false);
+        nextPanel.SetActive(true);
     }
     public void BackGame()
     {
@@ -25,4 +26,9 @@ public class GameStarter : MonoBehaviour
         previousPanel.SetActive(true);
     }
 
+    public void LoadStartScene()
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
+    }
 }
