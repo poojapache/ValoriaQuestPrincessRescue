@@ -13,7 +13,6 @@ TagManager:
   - Ghost
   - GemCollectable
   - Enemy
-  - Wall
   layers:
   - Default
   - TransparentFX
@@ -22,7 +21,7 @@ TagManager:
   - Water
   - UI
   - postproc
-  - Wall
+  - 
   - 
   - 
   - 
