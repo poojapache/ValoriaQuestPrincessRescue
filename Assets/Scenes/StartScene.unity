@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17186624, g: 0.06531225, b: 0.004281311, a: 1}
+  m_IndirectSpecularColor: {r: 0.35974532, g: 0.33292606, b: 0.21574906, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3200,7 +3200,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112, y: 5.9039}
+  m_AnchoredPosition: {x: 141, y: 5.9039}
   m_SizeDelta: {x: 101.9412, y: 210.5628}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &972864216
@@ -3312,6 +3312,7 @@ MonoBehaviour:
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   imageToShowHide: {fileID: 1059084944}
+  imageToHide: {fileID: 2114717795}
 --- !u!1 &978333964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,7 +3594,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000030518, y: 7.9}
-  m_SizeDelta: {x: 307.5819, y: 337.437}
+  m_SizeDelta: {x: 140, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1059084944
 MonoBehaviour:
@@ -5254,7 +5255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1719947797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5333,6 +5334,7 @@ MonoBehaviour:
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   imageToShowHide: {fileID: 0}
+  imageToHide: {fileID: 0}
 --- !u!1 &1749817833
 GameObject:
   m_ObjectHideFlags: 0
@@ -6297,7 +6299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -111, y: 12}
+  m_AnchoredPosition: {x: -131, y: 12}
   m_SizeDelta: {x: 122.2618, y: 222.7551}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035056019
@@ -6409,6 +6411,7 @@ MonoBehaviour:
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   imageToShowHide: {fileID: 2114717795}
+  imageToHide: {fileID: 1059084944}
 --- !u!1 &2108605411
 GameObject:
   m_ObjectHideFlags: 0
@@ -6549,7 +6552,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0000076294, y: 0.00000095367}
-  m_SizeDelta: {x: 307.5819, y: 337.437}
+  m_SizeDelta: {x: 140, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2114717795
 MonoBehaviour:
