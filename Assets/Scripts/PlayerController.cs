@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     public GameObject softStarEnemyParent;
     public GameObject heartEnemyParent;
     public GameObject cubieEnemyParent;
-    private bool collectedPotion;
+    
 
     // Initialize; Start is called before the first frame update.
     void Start()
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         collectedHeartGem = false;
         collectedCubiodGem = false;
         collectedHexagonGem = false;
-        collectedPotion = false;
+        
     }
 
 
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
     void SetEnergyCountText()
     {
         energyCountText.text = energyLevel.ToString();
-        if (energyLevel < 50 && collectedPotion) energyCountText.color = Color.red;
+        if (energyLevel < 50 && sceneController.collectedPotion) energyCountText.color = Color.red;
         else energyCountText.color = Color.white;
     }
 
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject.tag);
             other.gameObject.SetActive(false);
             energyLevel += 50;
-            collectedPotion = true;
+            sceneController.collectedPotion = true;
             StartCoroutine(UIAnimationCoroutine(energyImage));
             SetEnergyCountText();
         }
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
             energyLevel -= 10; ;
             StartCoroutine(UIAnimationCoroutine(energyImage));
             SetEnergyCountText();
-            if (energyLevel == 0 && collectedPotion) GameLost();
+            if (energyLevel == 0 && sceneController.collectedPotion) GameLost();
             
         }
 

@@ -11,11 +11,16 @@ public class SceneController : MonoBehaviour
     [HideInInspector] public GameObject player;
     [HideInInspector] private CameraController cameraController;
     PlayerController playerController;
+    [HideInInspector] public bool collectedPotion;
 
     private void Awake()
     {
         InitializeScene();
         
+    }
+    private void Start()
+    {
+        collectedPotion = false;
     }
 
     private void InitializeScene()
