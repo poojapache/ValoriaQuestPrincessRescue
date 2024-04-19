@@ -9,15 +9,15 @@ public class PlayerController : MonoBehaviour
     // Rigidbody of the player.
     private Rigidbody rb;
 
-    // Player is attacking
-    public bool doAttack;
+    //// Player is attacking
+    //[HideInInspector] public bool doAttack;
 
-    // Movement along X and Y axes.
-    private float movementX;
-    private float movementY;
+    //// Movement along X and Y axes.
+    //private float movementX;
+    //private float movementY;
 
-    // Speed at which the player moves.
-    public float speed = 0;
+    //// Speed at which the player moves.
+    //public float speed = 0;
 
     //Store the key count and energy count
     public int noOfKeys;
@@ -39,13 +39,13 @@ public class PlayerController : MonoBehaviour
     public GameObject energyImage;
     public GameObject gemImage;
 
-    private float filteredForwardInput = 0f;
-    private float filteredTurnInput = 0f;
+    //private float filteredForwardInput = 0f;
+    //private float filteredTurnInput = 0f;
 
-    public bool InputMapToCircular = true;
+    //public bool InputMapToCircular = true;
 
-    public float forwardInputFilter = 5f;
-    public float turnInputFilter = 5f;
+    //public float forwardInputFilter = 5f;
+    //public float turnInputFilter = 5f;
 
     private AudioSource audioSource;
     public AudioClip[] audioClips;
@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     public GameObject gameWonGameObject;
     public GameObject respawnObject;
     public TextMeshProUGUI respawnMessage;
+
+    public GameObject levelWonObject;
+    public TextMeshProUGUI levelWonMessage;
 
     public GameObject backgroundAudio;
 
@@ -64,39 +67,21 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int ghost2Energy = 100;
     [HideInInspector] public int ghost2Gems = 4;
 
-    public GameObject bigGhost;
-    public GameObject malePlayer;
-    public GameObject femalePlayer;
+    [HideInInspector] public PlayerInput playerInput;
+    [HideInInspector] public PlayerMovementController playerMovementController;
+    private SceneController sceneController;
 
-    //Variables for movement
-    public float Forward
-    {
-        get;
-        private set;
-    }
+    [HideInInspector] public bool collectedSoftStarGem;
 
-    public float Turn
-    {
-        get;
-        private set;
-    }
+    public Transform refTransform;
 
     // Initialize; Start is called before the first frame update.
     void Start()
     {
-        // Get and store the Rigidbody component attached to the player.
-        if(CharcaterSelector.character == 1)
-        {
-            malePlayer.SetActive(false);
-            femalePlayer.SetActive(true);
-        }
-        else
-        {
-            malePlayer.SetActive(true);
-            femalePlayer.SetActive(false);
-        }
-        rb = GetComponent<Rigidbody>();
+        playerInput = GetComponent<PlayerInput>();
+        playerMovementController = GetComponent<PlayerMovementController>();
         audioSource = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
         gameInfoText = gameInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         noOfKeys = 0;
         energyLevel = 0;
@@ -105,20 +90,10 @@ public class PlayerController : MonoBehaviour
         SetKeyCountText();
         SetGemCountText();
         SetEnergyCountText();
+        sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
+        collectedSoftStarGem = false;
     }
 
-
-    // This function is called when a move input is detected.
-    void OnMove(InputValue movementValue)
-    {
-        //Debug.Log("moved");
-        // Convert the input value into a Vector2 for movement.
-        Vector2 movementVector = movementValue.Get<Vector2>();
-
-        // Store the X and Y components of the movement.
-        movementX = movementVector.x;
-        movementY = movementVector.y;
-    }
 
     //Set the number of keys
     void SetKeyCountText()
@@ -162,13 +137,19 @@ public class PlayerController : MonoBehaviour
             noOfGems += 1;
             StartCoroutine(UIAnimationGhostCoroutine(gemImage));
             SetGemCountText();
+            if (other.gameObject.name.Equals("SoftStar")) collectedSoftStarGem = true;
+            if (collectedSoftStarGem && noOfKeys == 6)
+            {
+                sceneController.KillSoftStarEnemies();
+                PlayKillGhostAudio();
+            }
         }
         if (other.gameObject.CompareTag("Ghost"))
         {
             
             if (other.gameObject.GetComponent<PatrolandRunaway>() != null && energyLevel >= ghost1Energy)
             {
-                doAttack = true;
+                playerMovementController.doAttack = true;
                 CollectKey();
                 // Deactivate the collided object (making it disappear).
                 Debug.Log(other.gameObject.tag);
@@ -204,10 +185,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("KeyCollectible"))
         {
             CollectKey();
-            if(noOfKeys == 7)
-            {
-                StartCoroutine(KillGhostCoroutine(bigGhost));
-            }
+            //if(noOfKeys == 7)
+            //{
+            //    StartCoroutine(KillGhostCoroutine(bigGhost));
+            //}
             // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
         }
@@ -226,48 +207,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        //GetAxisRaw() so we can do filtering here instead of the InputManager
-        float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
-        float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
-
-
-        if (InputMapToCircular)
-        {
-            // make coordinates circular
-            h = h * Mathf.Sqrt(1f - 0.5f * v * v);
-            v = v * Mathf.Sqrt(1f - 0.5f * h * h);
-
-        }
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            h = -0.5f;
-            v += 0.1f;
-        }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            h = 0.5f;
-            v += 0.1f;
-        }
-
-        if (Mathf.Abs(h) > 0 && v == 0)
-        {
-            v = 0.05f;
-        }
-
-
-        //do some filtering of our input as well as clamp to a speed limit
-        filteredForwardInput = Mathf.Clamp(Mathf.Lerp(filteredForwardInput, v,
-            Time.deltaTime * forwardInputFilter), -speed, speed);
-
-        filteredTurnInput = Mathf.Lerp(filteredTurnInput, h,
-            Time.deltaTime * turnInputFilter);
-
-        Forward = filteredForwardInput;
-        Turn = filteredTurnInput;
-    }
 
     public void SetEnergyWarningText(int energy)
     {
@@ -295,9 +234,14 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(UIAnimationGhostCoroutine(keyImage));
         SetKeyCountText();
         SetDoorJam();
+        if (collectedSoftStarGem && noOfKeys == 6)
+        {
+            sceneController.KillSoftStarEnemies();
+            PlayKillGhostAudio();
+        }
     }
 
-    public void GameWon()
+        public void GameWon()
     {
         audioSource.clip = audioClips[5];
         audioSource.Play();
@@ -362,12 +306,24 @@ public class PlayerController : MonoBehaviour
         audioSource.Play();
     }
 
+    public void PlayLevelWonAudio()
+    {
+        //collision sound here
+        audioSource.clip = audioClips[5];
+        audioSource.Play();
+    }
+
     private IEnumerator KillGhostCoroutine(GameObject ghost)
     {
         yield return new WaitForSeconds(0.2f);
+        PlayKillGhostAudio();
+        ghost.SetActive(false);
+    }
+
+    public void PlayKillGhostAudio()
+    {
         audioSource.clip = audioClips[4];
         audioSource.Play();
-        ghost.SetActive(false);
     }
 
     private IEnumerator UIAnimationGhostCoroutine(GameObject icon)
@@ -375,5 +331,95 @@ public class PlayerController : MonoBehaviour
         icon.GetComponent<Animation>().Play();
         yield return new WaitForSeconds(2f);
         icon.GetComponent<Animation>().Stop();
+    }
+
+    public void DisableInput()
+    {
+        rb.isKinematic = true;
+        rb.detectCollisions = false;
+        playerInput.enabled = false;
+    }
+
+    public void EnableInput()
+    {
+        rb.isKinematic = false;
+        rb.detectCollisions = true;
+        playerInput.enabled = true;
+    }
+
+    private IEnumerator RespawnControllerCoroutine(Animator animator, GameObject keyInfoGameObject, GameObject respawnRoomLight, Transform respawnTransform)
+    {
+        yield return new WaitForSeconds(1.1f);
+        //audio
+        PlayDummyDoorAudio();
+        //disable player rigid body
+        DisableInput();
+        //show message on screen
+        respawnObject.SetActive(true);
+        respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 5... ";
+        yield return new WaitForSeconds(0.5f);
+        respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 4... ";
+        yield return new WaitForSeconds(0.5f);
+        respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 3...";
+        yield return new WaitForSeconds(0.5f);
+        respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 2...";
+        yield return new WaitForSeconds(0.5f);
+        respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 1...";
+        yield return new WaitForSeconds(0.5f);
+        //close door
+        animator.SetInteger("doorVal", 3);
+        keyInfoGameObject.SetActive(true);
+        //adjust lighting
+        respawnRoomLight.SetActive(false);
+        // respawn
+        transform.position = respawnTransform.position;
+        transform.rotation = respawnTransform.rotation;
+        //resume game
+        EnableInput();
+        //hide respawn message
+        respawnObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        respawnRoomLight.SetActive(true);
+    }
+
+    public void Respawn(Animator animator, GameObject keyInfoGameObject, GameObject respawnRoomLight, Transform respawnTransform)
+    {
+        StartCoroutine(RespawnControllerCoroutine(animator, keyInfoGameObject, respawnRoomLight, respawnTransform));
+    }
+
+    private IEnumerator LevelWonCoroutine()
+    {
+
+        yield return new WaitForSeconds(1.1f);
+        //audio
+        PlayLevelWonAudio();
+        //disable player rigid body
+        DisableInput();
+        //show message on screen
+        levelWonObject.SetActive(true);
+        levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 5...";
+        yield return new WaitForSeconds(0.5f);
+        levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 4...";
+        yield return new WaitForSeconds(0.5f);
+        levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 3...";
+        yield return new WaitForSeconds(0.5f);
+        levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 2...";
+        yield return new WaitForSeconds(0.5f);
+        levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 1...";
+        yield return new WaitForSeconds(0.5f);
+
+        levelWonObject.SetActive(false);
+        //load new scene
+        SceneManager.LoadScene(2);
+        //move to correct transform then enable
+        this.transform.position = refTransform.position;
+        this.transform.rotation = refTransform.rotation;
+        EnableInput();
+
+    }
+
+    public void LevelWon()
+    {
+        StartCoroutine(LevelWonCoroutine());
     }
 }
