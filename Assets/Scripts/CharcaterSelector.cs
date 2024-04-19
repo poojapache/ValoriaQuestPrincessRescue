@@ -12,7 +12,6 @@ public class CharcaterSelector : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Vector2 hotSpot = Vector2.zero;//By default
     public static int character = 1;//To control character selection
     public Image imageToShowHide; // Reference to the image to show/hide
-    public Image imageToHide; // Reference to the image to show/hide
     private bool selected = false;
 
     void Start()
@@ -54,7 +53,6 @@ public class CharcaterSelector : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public void OnSelect(BaseEventData eventData)
     {
         // Show the image when selected
-        imageToHide.gameObject.SetActive(false);
         imageToShowHide.gameObject.SetActive(true);
         selected = true;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
