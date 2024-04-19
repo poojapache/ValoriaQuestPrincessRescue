@@ -12,7 +12,7 @@ public class PatrolAndChase : MonoBehaviour
     //public GameObject keyPrefab;
     private int energyLevel;
     public bool hitWall = false;
-    private Transform enemy; // Reference to the enemy GameObject
+    public Transform enemy; // Reference to the enemy GameObject
 
     public enum AIState
     {
@@ -23,7 +23,7 @@ public class PatrolAndChase : MonoBehaviour
 
     void Start()
     {
-        enemy = GameObject.FindWithTag("Player").transform;
+        //enemy = GameObject.FindWithTag("Player").transform;
         energyLevel = GameObject.FindWithTag("Player").GetComponent<PlayerController>().ghost1Energy;
         agent.speed = 10;
         agent.acceleration = 8;

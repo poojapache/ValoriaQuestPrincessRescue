@@ -6030,7 +6030,6 @@ MonoBehaviour:
   noOfKeys: 0
   energyLevel: 0
   noOfGems: 0
-  doorCount: 0
   keyCountText: {fileID: 392709992}
   GemCountText: {fileID: 1688186377}
   energyCountText: {fileID: 730737748}
@@ -6054,6 +6053,8 @@ MonoBehaviour:
   respawnMessage: {fileID: 2078542539}
   levelWonObject: {fileID: 2076930522}
   levelWonMessage: {fileID: 1754071817}
+  gameWonObject: {fileID: 0}
+  gameWonMessage: {fileID: 0}
   backgroundAudio: {fileID: 457464485}
   gameDoorAnimator:
   - {fileID: 5428819547928773494}
@@ -6073,7 +6074,7 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   playerMovementController: {fileID: 0}
   collectedSoftStarGem: 0
-  refTransform: {fileID: 4516012515910403849, guid: fc44cb0adfc9fc74d8092bbf7f8b9edc, type: 3}
+  softStarEnemyParent: {fileID: 326867591}
 --- !u!54 &291230709
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6253,18 +6254,6 @@ MonoBehaviour:
   InputMapToCircular: 1
   forwardInputFilter: 5
   turnInputFilter: 5
---- !u!114 &291230724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291230702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4896b8975932eb43ac15c9b0c0aa410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &292023106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9107,7 +9096,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background Music
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3532204708850350980, guid: 48a2cdb4ed8005040b9f46bcbcc38ec5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 48a2cdb4ed8005040b9f46bcbcc38ec5, type: 3}
 --- !u!1 &457464485 stripped
 GameObject:
@@ -15072,7 +15062,6 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -15166,18 +15155,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   yPositionOffset: 7.01
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4896b8975932eb43ac15c9b0c0aa410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &965903812
 GameObject:
   m_ObjectHideFlags: 0
@@ -22121,8 +22098,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1212636518}
     - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: softStarEnemyParent
+      value: 
+      objectReference: {fileID: 326867591}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
       propertyPath: audioClips.Array.size
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
       propertyPath: audioClips.Array.data[9]
@@ -28569,7 +28550,6 @@ MonoBehaviour:
   malePlayer: {fileID: 0}
   femalePlayer: {fileID: 0}
   player: {fileID: 0}
-  softStarEnemyParent: {fileID: 326867591}
 --- !u!114 &2002871723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29437,18 +29417,6 @@ MonoBehaviour:
   InputMapToCircular: 1
   forwardInputFilter: 5
   turnInputFilter: 5
---- !u!114 &2023802408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994707183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4896b8975932eb43ac15c9b0c0aa410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2027119866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31717,7 +31685,8 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2002871722}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7172221901560453999, guid: c1b7569c9c2596742ac15db768eed25d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c1b7569c9c2596742ac15db768eed25d, type: 3}
 --- !u!1001 &7378815885224462186
 PrefabInstance:
@@ -33000,7 +32969,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8224943703111161629, guid: 3c8efdfbc19ca904e8635b8e330679c4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3c8efdfbc19ca904e8635b8e330679c4, type: 3}
 --- !u!1001 &8564584560422189171
 PrefabInstance:
