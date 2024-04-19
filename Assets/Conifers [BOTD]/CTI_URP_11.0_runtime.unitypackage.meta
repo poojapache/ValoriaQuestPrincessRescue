@@ -1,17 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Conifers [BOTD]/CTI_URP_11.0_runtime.unitypackage.meta
 guid: 9a480bd7d5bfc664cb6763b6a5dd4993
 ========
 guid: 88d5037c40acd0548a3838cc56b7d864
 >>>>>>>> parent of d9d8a96 (level1 and level2):Assets/Conifers [BOTD]/CTI_URP_10.3.2_runtime.unitypackage.meta
-=======
-<<<<<<<< HEAD:Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/VSPro_CTIShaderController.unitypackage.meta
-guid: e4d200bd9cd394c85b6d524927580559
-========
-guid: 9a480bd7d5bfc664cb6763b6a5dd4993
->>>>>>>> parent of d9d8a96 (level1 and level2):Assets/Conifers [BOTD]/CTI_URP_11.0_runtime.unitypackage.meta
->>>>>>> parent of d9d8a96 (level1 and level2)
 DefaultImporter:
   externalObjects: {}
   userData: 
