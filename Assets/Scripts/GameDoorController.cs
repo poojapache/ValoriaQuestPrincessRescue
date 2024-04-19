@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class GameDoorController : MonoBehaviour
 {
@@ -17,10 +15,10 @@ public class GameDoorController : MonoBehaviour
     private GameObject keyInfoGameObject;
     public GameObject respawnRoomLight;
 
-
     private void Awake()
     {
-        
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
         keyInfoGameObject = transform.GetChild(0).gameObject;
     }
     void Start()
@@ -32,7 +30,7 @@ public class GameDoorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter(Collider c)
@@ -40,51 +38,46 @@ public class GameDoorController : MonoBehaviour
         //chek if collider belongs to player and check if player has enough keys
         if (c.gameObject.CompareTag("Player") && c.GetComponent<PlayerController>().noOfKeys == noOfKeysRequired)
         {
-            playerController = c.GetComponent<PlayerController>();
             keyInfoGameObject.SetActive(false);
             //open door
             playerController.DoorOpen(animator);
             //remove key required text on screen
             playerController.ClearGameInfoText();
-            if (!isDummyDoor)
-            {
+            if (!isDummyDoor) {
                 //ghost 1 room
-                if (noOfKeysRequired == 3 && playerController.energyLevel < playerController.ghost1Energy)
+                if(noOfKeysRequired == 3 && playerController.energyLevel < playerController.ghost1Energy)
                 {
                     playerController.SetEnergyWarningText(1);
                 }
                 //ghost 2 room
-                //else if (noOfKeysRequired == 6 && (playerController.energyLevel < playerController.ghost2Energy || playerController.noOfGems < playerController.ghost2Gems))
-                //{
-                //    playerController.SetEnergyWarningText(2);
-
-                //}
-                //last door
-                else if (noOfKeysRequired == 6)
+                else if (noOfKeysRequired == 6 && (playerController.energyLevel < playerController.ghost2Energy || playerController.noOfGems < playerController.ghost2Gems))
                 {
-                    //StartCoroutine(LevelWonCoroutine(c.gameObject));
-                    playerController.LevelWon();
-                }
+                    playerController.SetEnergyWarningText(2);
 
+                }
+                //last door
+                else if (noOfKeysRequired == 7)
+                {
+                    StartCoroutine(GameWonCoroutine());
+                }
+                
             }
             else
             {
                 //spawn in previous room
-                //StartCoroutine(RespawnControllerCoroutine(c.gameObject));
-                playerController.Respawn(animator, keyInfoGameObject, respawnRoomLight, respawnTransform);
+                StartCoroutine(RespawnControllerCoroutine());
             }
         }
 
     }
 
-    private IEnumerator RespawnControllerCoroutine(GameObject player)
+    private IEnumerator RespawnControllerCoroutine()
     {
-        PlayerController playerController = player.GetComponent<PlayerController>();
         yield return new WaitForSeconds(1.1f);
         //audio
         playerController.PlayDummyDoorAudio();
-        //disable player rigid body
-        playerController.DisableInput();
+        //disable player controller
+        playerController.enabled = false;
         //show message on screen
         playerController.respawnObject.SetActive(true);
         playerController.respawnMessage.text = "Oh no, you opened a dummy door!\r\nYou will be respawned to another room in 5... ";
@@ -106,41 +99,17 @@ public class GameDoorController : MonoBehaviour
         player.transform.position = respawnTransform.position;
         player.transform.rotation = respawnTransform.rotation;
         //resume game
-        playerController.EnableInput();
+        playerController.enabled = true;
         //hide respawn message
         playerController.respawnObject.SetActive(false);
         yield return new WaitForSeconds(2f);
         respawnRoomLight.SetActive(true);
     }
 
-    private IEnumerator LevelWonCoroutine(GameObject player)
+    private IEnumerator GameWonCoroutine()
     {
-        playerController = player.GetComponent<PlayerController>();
-
         yield return new WaitForSeconds(1.1f);
-        //audio
-        playerController.PlayLevelWonAudio();
-        //disable player rigid body
-        playerController.DisableInput();
-        //show message on screen
-        playerController.levelWonObject.SetActive(true);
-        playerController.levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 5...";
-        yield return new WaitForSeconds(0.5f);
-        playerController.levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 4...";
-        yield return new WaitForSeconds(0.5f);
-        playerController.levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 3...";
-        yield return new WaitForSeconds(0.5f);
-        playerController.levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 2...";
-        yield return new WaitForSeconds(0.5f);
-        playerController.levelWonMessage.text = "Level 1 Completed!\r\nLevel 2 starting in 1...";
-        yield return new WaitForSeconds(0.5f);
-
-        playerController.levelWonObject.SetActive(false);
-        //load new scene
-        SceneManager.LoadScene(2);
-
-        //move to correct transform then enable
-        playerController.EnableInput();
+        playerController.GameWon();
 
     }
 }

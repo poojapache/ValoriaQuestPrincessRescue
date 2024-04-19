@@ -14,8 +14,6 @@ TagManager:
   - GemCollectable
   - Enemy
   - Wall
-  - SceneController
-  - RespawnTransform
   layers:
   - Default
   - TransparentFX
