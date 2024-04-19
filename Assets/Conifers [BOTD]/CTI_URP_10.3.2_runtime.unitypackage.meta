@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Scenes/old scene 1.unity.meta
@@ -21,9 +20,6 @@ guid: 434ada93b921e354ea9f398069a60a9d
 guid: 88d5037c40acd0548a3838cc56b7d864
 >>>>>>>> parent of d9d8a96 (level1 and level2):Assets/Conifers [BOTD]/CTI_URP_10.3.2_runtime.unitypackage.meta
 >>>>>>> parent of d9d8a96 (level1 and level2)
-=======
-guid: 5d4444cfd555aa64b9661478cfab77cd
->>>>>>> Stashed changes
 DefaultImporter:
   externalObjects: {}
   userData: 
