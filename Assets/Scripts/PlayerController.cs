@@ -9,24 +9,12 @@ public class PlayerController : MonoBehaviour
     // Rigidbody of the player.
     private Rigidbody rb;
 
-    //// Player is attacking
-    //[HideInInspector] public bool doAttack;
-
-    //// Movement along X and Y axes.
-    //private float movementX;
-    //private float movementY;
-
-    //// Speed at which the player moves.
-    //public float speed = 0;
-
     //Store the key count and energy count
     public int noOfKeys;
     public int energyLevel;
 
     //Number of gems collected so far
     public int noOfGems;
-
-    public int doorCount;
 
     //Variable for key and energy count on Canvas
     public TextMeshProUGUI keyCountText;
@@ -39,14 +27,6 @@ public class PlayerController : MonoBehaviour
     public GameObject energyImage;
     public GameObject gemImage;
 
-    //private float filteredForwardInput = 0f;
-    //private float filteredTurnInput = 0f;
-
-    //public bool InputMapToCircular = true;
-
-    //public float forwardInputFilter = 5f;
-    //public float turnInputFilter = 5f;
-
     private AudioSource audioSource;
     public AudioClip[] audioClips;
 
@@ -57,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject levelWonObject;
     public TextMeshProUGUI levelWonMessage;
+
+    public GameObject gameWonObject;
+    public TextMeshProUGUI gameWonMessage;
 
     public GameObject backgroundAudio;
 
@@ -72,8 +55,12 @@ public class PlayerController : MonoBehaviour
     private SceneController sceneController;
 
     [HideInInspector] public bool collectedSoftStarGem;
-
-    public Transform refTransform;
+    [HideInInspector] public bool collectedHeartGem;
+    [HideInInspector] public bool collectedCubiodGem;
+    [HideInInspector] public bool collectedHexagonGem;
+    public GameObject softStarEnemyParent;
+    public GameObject heartEnemyParent;
+    public GameObject cubieEnemyParent;
 
     // Initialize; Start is called before the first frame update.
     void Start()
@@ -83,15 +70,14 @@ public class PlayerController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         gameInfoText = gameInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        noOfKeys = 0;
-        energyLevel = 0;
-        noOfGems = 0;
-        doorCount = 0;
         SetKeyCountText();
         SetGemCountText();
         SetEnergyCountText();
         sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
         collectedSoftStarGem = false;
+        collectedHeartGem = false;
+        collectedCubiodGem = false;
+        collectedHexagonGem = false;
     }
 
 
@@ -124,7 +110,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject.tag);
             other.gameObject.SetActive(false);
             energyLevel += 50;
-            StartCoroutine(UIAnimationGhostCoroutine(energyImage));
+            StartCoroutine(UIAnimationCoroutine(energyImage));
             SetEnergyCountText();
         }
         // Check if the object the player collided with has the "PickUp" tag.
@@ -135,18 +121,14 @@ public class PlayerController : MonoBehaviour
             // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
             noOfGems += 1;
-            StartCoroutine(UIAnimationGhostCoroutine(gemImage));
+            StartCoroutine(UIAnimationCoroutine(gemImage));
             SetGemCountText();
-            if (other.gameObject.name.Equals("SoftStar")) collectedSoftStarGem = true;
-            if (collectedSoftStarGem && noOfKeys == 6)
-            {
-                sceneController.KillSoftStarEnemies();
-                PlayKillGhostAudio();
-            }
+            SetGemStatus(other.gameObject.name);
+            
         }
         if (other.gameObject.CompareTag("Ghost"))
         {
-            
+
             if (other.gameObject.GetComponent<PatrolandRunaway>() != null && energyLevel >= ghost1Energy)
             {
                 playerMovementController.doAttack = true;
@@ -157,11 +139,6 @@ public class PlayerController : MonoBehaviour
             }
             else if (other.gameObject.GetComponent<PatrolAndChase>() != null && energyLevel >= ghost2Energy)
             {
-                //doAttack = true;
-                //CollectKey();
-                //// Deactivate the collided object (making it disappear).
-                //Debug.Log(other.gameObject.tag);
-                //StartCoroutine(KillGhostCoroutine(other.gameObject));
                 GameLost();
             }
             else GameLost();
@@ -185,11 +162,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("KeyCollectible"))
         {
             CollectKey();
-            //if(noOfKeys == 7)
-            //{
-            //    StartCoroutine(KillGhostCoroutine(bigGhost));
-            //}
-            // Deactivate the collided object (making it disappear).
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("EnergyCollectible"))
@@ -201,7 +173,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject.tag);
 
             other.transform.parent.gameObject.SetActive(false);
-            StartCoroutine(UIAnimationGhostCoroutine(energyImage));
+            StartCoroutine(UIAnimationCoroutine(energyImage));
             energyLevel += 10;
             SetEnergyCountText();
         }
@@ -231,17 +203,13 @@ public class PlayerController : MonoBehaviour
         audioSource.clip = audioClips[0];
         audioSource.Play();
         noOfKeys += 1;
-        StartCoroutine(UIAnimationGhostCoroutine(keyImage));
+        StartCoroutine(UIAnimationCoroutine(keyImage));
         SetKeyCountText();
         SetDoorJam();
-        if (collectedSoftStarGem && noOfKeys == 6)
-        {
-            sceneController.KillSoftStarEnemies();
-            PlayKillGhostAudio();
-        }
+        CheckKillGhost();
     }
 
-        public void GameWon()
+    public void GameWon()
     {
         audioSource.clip = audioClips[5];
         audioSource.Play();
@@ -279,24 +247,40 @@ public class PlayerController : MonoBehaviour
 
     void SetDoorJam()
     {
-        gameDoorAnimator[noOfKeys - 1].SetInteger("doorVal", 1);
-        if (noOfKeys == 4)
+        int levelIndex = SceneManager.GetActiveScene().buildIndex;
+        //level 1
+        if (levelIndex == 1)
         {
-            dummyDoorAnimator[0].SetInteger("doorVal", 1);
-            dummyDoorAnimator[1].SetInteger("doorVal", 1);
-        }
-        else if (noOfKeys == 5) dummyDoorAnimator[2].SetInteger("doorVal", 1);
-        else if (noOfKeys == 6) dummyDoorAnimator[3].SetInteger("doorVal", 1);
+            gameDoorAnimator[noOfKeys - 1].SetInteger("doorVal", 1);
+            if (noOfKeys == 4)
+            {
+                dummyDoorAnimator[0].SetInteger("doorVal", 1);
+                dummyDoorAnimator[1].SetInteger("doorVal", 1);
+            }
+            else if (noOfKeys == 5) dummyDoorAnimator[2].SetInteger("doorVal", 1);
+            else if (noOfKeys == 6) dummyDoorAnimator[3].SetInteger("doorVal", 1);
 
-        //undo prev door anim
-        if (noOfKeys > 1) gameDoorAnimator[noOfKeys - 2].SetInteger("doorVal", 0);
-        if (noOfKeys == 5)
-        {
-            dummyDoorAnimator[0].SetInteger("doorVal", 0);
-            dummyDoorAnimator[1].SetInteger("doorVal", 0);
+            //undo prev door anim
+            if (noOfKeys > 1) gameDoorAnimator[noOfKeys - 2].SetInteger("doorVal", 0);
+            if (noOfKeys == 5)
+            {
+                dummyDoorAnimator[0].SetInteger("doorVal", 0);
+                dummyDoorAnimator[1].SetInteger("doorVal", 0);
+            }
+            else if (noOfKeys == 6) dummyDoorAnimator[2].SetInteger("doorVal", 0);
         }
-        else if (noOfKeys == 6) dummyDoorAnimator[2].SetInteger("doorVal", 0);
-        else if (noOfKeys == 7) dummyDoorAnimator[3].SetInteger("doorVal", 0);
+        //level 2
+        else
+        {
+            //unlock doors
+            gameDoorAnimator[noOfKeys - 7].SetInteger("doorVal", 1);
+            if (noOfKeys == 7) dummyDoorAnimator[0].SetInteger("doorVal", 1);
+
+            //undo prev door anim
+            if (noOfKeys > 7) gameDoorAnimator[noOfKeys - 8].SetInteger("doorVal", 0);
+            if (noOfKeys == 8) dummyDoorAnimator[0].SetInteger("doorVal", 0);
+        }
+
     }
 
     public void PlayDummyDoorAudio()
@@ -326,7 +310,7 @@ public class PlayerController : MonoBehaviour
         audioSource.Play();
     }
 
-    private IEnumerator UIAnimationGhostCoroutine(GameObject icon)
+    private IEnumerator UIAnimationCoroutine(GameObject icon)
     {
         icon.GetComponent<Animation>().Play();
         yield return new WaitForSeconds(2f);
@@ -410,16 +394,46 @@ public class PlayerController : MonoBehaviour
 
         levelWonObject.SetActive(false);
         //load new scene
-        SceneManager.LoadScene(2);
-        //move to correct transform then enable
-        this.transform.position = refTransform.position;
-        this.transform.rotation = refTransform.rotation;
-        EnableInput();
+        sceneController.LoadLevel2();
 
     }
 
     public void LevelWon()
     {
         StartCoroutine(LevelWonCoroutine());
+    }
+    public void KillSoftStarEnemies()
+    {
+        Destroy(softStarEnemyParent);
+        PlayKillGhostAudio();
+    }
+
+    public void KillHeartEnemies()
+    {
+        Destroy(heartEnemyParent);
+        PlayKillGhostAudio();
+    }
+
+    public void KillCubieEnemies()
+    {
+        Destroy(cubieEnemyParent);
+        PlayKillGhostAudio();
+    }
+
+    public void SetGemStatus(string gemName)
+    {
+        if (gemName.Equals("SoftStar")) collectedSoftStarGem = true;
+        else if (gemName.Equals("Heart")) collectedHeartGem = true;
+        else if (gemName.Equals("Cuboid")) collectedCubiodGem = true;
+        else if (gemName.Equals("Hexagon")) collectedHexagonGem = true;
+
+        CheckKillGhost();
+    }
+
+    public void CheckKillGhost()
+    {
+        if (collectedSoftStarGem && noOfKeys == 6) KillSoftStarEnemies();
+        else if (collectedHeartGem && noOfKeys == 7) KillHeartEnemies();
+        else if (collectedCubiodGem && collectedHexagonGem && noOfKeys == 8) KillCubieEnemies();
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class GameDoorController : MonoBehaviour
 {
-
     private Animator animator;
     public int noOfKeysRequired;
     public bool isDummyDoor = false;
@@ -20,7 +19,6 @@ public class GameDoorController : MonoBehaviour
 
     private void Awake()
     {
-        
         keyInfoGameObject = transform.GetChild(0).gameObject;
     }
     void Start()

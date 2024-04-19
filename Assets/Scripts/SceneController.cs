@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,11 +9,18 @@ public class SceneController : MonoBehaviour
     [HideInInspector] public GameObject malePlayer;
     [HideInInspector] public GameObject femalePlayer;
     [HideInInspector] public GameObject player;
-
-    public GameObject softStarEnemyParent;
+    [HideInInspector] private CameraController cameraController;
+    PlayerController playerController;
 
     private void Awake()
     {
+        InitializeScene();
+        
+    }
+
+    private void InitializeScene()
+    {
+        cameraController = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
         malePlayer = GameObject.Find("Male Player");
         femalePlayer = GameObject.Find("Female Player");
 
@@ -25,6 +33,14 @@ public class SceneController : MonoBehaviour
         {
             Destroy(femalePlayer);
             player = malePlayer;
+        }
+        playerController = player.GetComponent<PlayerController>();
+        cameraController.target = player.transform;
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            PatrolAndChase ghost2 = GameObject.FindWithTag("Ghost").GetComponent<PatrolAndChase>();
+            ghost2.enemy = player.transform;
         }
     }
 
@@ -56,8 +72,22 @@ public class SceneController : MonoBehaviour
         #endif
     }
 
-    public void KillSoftStarEnemies()
+
+    public void LoadLevel2()
     {
-        Destroy(softStarEnemyParent);
+        int keys = playerController.noOfKeys;
+        int gems = playerController.noOfGems;
+        int energy = playerController.energyLevel;
+        SceneManager.LoadScene(2);
+
+        InitializeScene();
+
+        playerController.noOfKeys = keys;
+        playerController.noOfGems = gems;
+        playerController.energyLevel = energy;
+
+        PatrolAndChase ghost2 = GameObject.FindWithTag("Ghost").GetComponent<PatrolAndChase>();
+        ghost2.enemy = player.transform;
+        
     }
 }
