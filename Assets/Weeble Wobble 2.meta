@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Conifers [BOTD]/Conifers [BOTD] URP_14plus.unitypackage.meta
 <<<<<<< Updated upstream
 <<<<<<<< HEAD:Assets/Conifers [BOTD]/Conifers [BOTD] URP_14plus.unitypackage.meta
 guid: 434ada93b921e354ea9f398069a60a9d
@@ -8,6 +9,10 @@ guid: 88d5037c40acd0548a3838cc56b7d864
 =======
 guid: 434ada93b921e354ea9f398069a60a9d
 >>>>>>> Stashed changes
+=======
+guid: a5e2f2d372fff05408c2d94aaf3e428a
+folderAsset: yes
+>>>>>>> parent of b8db6ff (Changes commit):Assets/Weeble Wobble 2.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

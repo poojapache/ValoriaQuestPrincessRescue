@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Conifers [BOTD]/Conifers [BOTD] URP.unitypackage.meta
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Conifers [BOTD]/Conifers [BOTD] URP.unitypackage.meta
@@ -12,6 +13,10 @@ guid: 2b43184afc73ac64d9bfb74962236298
 =======
 guid: 2b43184afc73ac64d9bfb74962236298
 >>>>>>> Stashed changes
+=======
+guid: 61b1a07d2d5bdb347b621bbfce90cbeb
+folderAsset: yes
+>>>>>>> parent of b8db6ff (Changes commit):Assets/Scenes/L2_Swati.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
