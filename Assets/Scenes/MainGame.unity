@@ -349,6 +349,7 @@ Transform:
   m_Father: {fileID: 295699306}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1001 &12362931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,6 +670,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4532250632830336, guid: 60e8218091f83244c9bf9c8c2569a009, type: 3}
   m_PrefabInstance: {fileID: 12362931}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of b8db6ff (Changes commit)
 --- !u!1 &16424407
 GameObject:
   m_ObjectHideFlags: 0
@@ -8588,6 +8591,8 @@ MonoBehaviour:
   gameWonGameObject: {fileID: 2076930522}
   respawnObject: {fileID: 1327738967}
   respawnMessage: {fileID: 2078542539}
+  levelWonObject: {fileID: 0}
+  levelWonMessage: {fileID: 0}
   backgroundAudio: {fileID: 1292667244}
   gameDoorAnimator:
   - {fileID: 5428819547928773494}
@@ -8605,9 +8610,7 @@ MonoBehaviour:
   ghost1Energy: 60
   ghost2Energy: 100
   ghost2Gems: 4
-  bigGhost: {fileID: 5845065812543532188}
-  malePlayer: {fileID: 12362932}
-  femalePlayer: {fileID: 291230702}
+  playerInput: {fileID: 0}
 --- !u!54 &291230709
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11212,7 +11215,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.7
+  m_fontSize: 27.5
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18420,7 +18423,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.05
+  m_fontSize: 26.85
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -20054,7 +20057,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.7
+  m_fontSize: 19.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22227,7 +22230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08abe183f8b86a341b8f8ac381700a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 12362941}
+  target: {fileID: 291230714}
   smoothSpeed: 0.125
   locationOffset: {x: 0, y: 7.05, z: -6.58}
   rotationOffset: {x: 20, y: 0, z: 0}
@@ -37267,7 +37270,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.45
+  m_fontSize: 25.6
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -47861,6 +47864,175 @@ Transform:
   m_Father: {fileID: 2516286618305176046}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3185290815137038582
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180798149097871813, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184078693913095725, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_Name
+      value: Male Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184078693913095725, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185290815130985536, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 3185290815130985536, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: m_UIInputModule
+      value: 
+      objectReference: {fileID: 1603371541}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: bigGhost
+      value: 
+      objectReference: {fileID: 5845065812543532188}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameInfo
+      value: 
+      objectReference: {fileID: 46130037}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gemImage
+      value: 
+      objectReference: {fileID: 139287679}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: keyImage
+      value: 
+      objectReference: {fileID: 1184651794}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: energyImage
+      value: 
+      objectReference: {fileID: 1130673647}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: GemCountText
+      value: 
+      objectReference: {fileID: 1688186377}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: femalePlayer
+      value: 
+      objectReference: {fileID: 291230702}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: keyCountText
+      value: 
+      objectReference: {fileID: 392709992}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: respawnObject
+      value: 
+      objectReference: {fileID: 1327738967}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: respawnMessage
+      value: 
+      objectReference: {fileID: 2078542539}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: backgroundAudio
+      value: 
+      objectReference: {fileID: 1292667244}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: energyCountText
+      value: 
+      objectReference: {fileID: 730737748}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameWonGameObject
+      value: 
+      objectReference: {fileID: 2076930522}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameLostGameObject
+      value: 
+      objectReference: {fileID: 1212636518}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameDoorAnimator.Array.data[0]
+      value: 
+      objectReference: {fileID: 5428819547928773494}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameDoorAnimator.Array.data[1]
+      value: 
+      objectReference: {fileID: 1391314908}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameDoorAnimator.Array.data[2]
+      value: 
+      objectReference: {fileID: 58912315}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameDoorAnimator.Array.data[3]
+      value: 
+      objectReference: {fileID: 1471205573}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameDoorAnimator.Array.data[4]
+      value: 
+      objectReference: {fileID: 616450696}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameDoorAnimator.Array.data[5]
+      value: 
+      objectReference: {fileID: 2008346841}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: gameDoorAnimator.Array.data[6]
+      value: 
+      objectReference: {fileID: 1515817908}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: dummyDoorAnimator.Array.data[0]
+      value: 
+      objectReference: {fileID: 1691341552}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: dummyDoorAnimator.Array.data[1]
+      value: 
+      objectReference: {fileID: 1056911216}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: dummyDoorAnimator.Array.data[2]
+      value: 
+      objectReference: {fileID: 1962133583}
+    - target: {fileID: 3185290815130985537, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
+      propertyPath: dummyDoorAnimator.Array.data[3]
+      value: 
+      objectReference: {fileID: 950626932}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a7a4d7a01607b44daba3f8c9e5d4378, type: 3}
 --- !u!95 &5428819547928773494
 Animator:
   serializedVersion: 5

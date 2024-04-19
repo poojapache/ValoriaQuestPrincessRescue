@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Conifers [BOTD]/CTI_URP_14plus_runtime.unitypackage.meta
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Conifers [BOTD]/CTI_URP_14plus_runtime.unitypackage.meta
@@ -12,6 +13,10 @@ guid: 304f43e57b45a8d43bb06425c2b4b50e
 =======
 guid: 304f43e57b45a8d43bb06425c2b4b50e
 >>>>>>> Stashed changes
+=======
+guid: c657136d8c0af41448ef855b015ed02a
+folderAsset: yes
+>>>>>>> parent of b8db6ff (Changes commit):Assets/Cube Villain.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
