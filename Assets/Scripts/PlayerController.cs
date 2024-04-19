@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     public GameObject softStarEnemyParent;
     public GameObject heartEnemyParent;
     public GameObject cubieEnemyParent;
+    private bool collectedPotion;
 
     // Initialize; Start is called before the first frame update.
     void Start()
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
         collectedHeartGem = false;
         collectedCubiodGem = false;
         collectedHexagonGem = false;
+        collectedPotion = false;
     }
 
 
@@ -91,6 +93,8 @@ public class PlayerController : MonoBehaviour
     void SetEnergyCountText()
     {
         energyCountText.text = energyLevel.ToString();
+        if (energyLevel < 50 && collectedPotion) energyCountText.color = Color.red;
+        else energyCountText.color = Color.white;
     }
 
     //Set the number of gems collected on canvase
@@ -110,6 +114,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject.tag);
             other.gameObject.SetActive(false);
             energyLevel += 50;
+            collectedPotion = true;
             StartCoroutine(UIAnimationCoroutine(energyImage));
             SetEnergyCountText();
         }
@@ -149,9 +154,11 @@ public class PlayerController : MonoBehaviour
             audioSource.clip = audioClips[4];
             audioSource.Play();
             // Deactivate the collided object (making it disappear).
-            Debug.Log(other.gameObject.tag);
-            other.gameObject.SetActive(false);
-            GameLost();
+            energyLevel -= 10; ;
+            StartCoroutine(UIAnimationCoroutine(energyImage));
+            SetEnergyCountText();
+            if (energyLevel == 0 && collectedPotion) GameLost();
+            
         }
 
     }
@@ -209,14 +216,14 @@ public class PlayerController : MonoBehaviour
         CheckKillGhost();
     }
 
-    public void GameWon()
-    {
-        audioSource.clip = audioClips[5];
-        audioSource.Play();
-        Time.timeScale = 0f;
-        gameWonGameObject.SetActive(true);
-        backgroundAudio.SetActive(false);
-    }
+    //public void GameWon()
+    //{
+    //    audioSource.clip = audioClips[5];
+    //    audioSource.Play();
+    //    Time.timeScale = 0f;
+    //    gameWonGameObject.SetActive(true);
+    //    backgroundAudio.SetActive(false);
+    //}
 
     public void GameLost()
     {
@@ -225,6 +232,7 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0f;
         gameLostGameObject.SetActive(true);
         backgroundAudio.SetActive(false);
+        DisableInput();
     }
 
     public void RestartGame()
@@ -398,9 +406,33 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private IEnumerator GameWonCoroutine()
+    {
+
+        yield return new WaitForSeconds(1.1f);
+        //audio
+        PlayLevelWonAudio();
+        //disable player rigid body
+        DisableInput();
+        //show message on screen
+        gameWonObject.SetActive(true);
+        gameWonMessage.text = "Congratulations!";
+        yield return new WaitForSeconds(2f);
+
+        gameWonObject.SetActive(false);
+        //load new scene
+        SceneManager.LoadScene(3);
+
+    }
+
     public void LevelWon()
     {
         StartCoroutine(LevelWonCoroutine());
+    }
+
+    public void GameWon()
+    {
+        StartCoroutine(GameWonCoroutine());
     }
     public void KillSoftStarEnemies()
     {
