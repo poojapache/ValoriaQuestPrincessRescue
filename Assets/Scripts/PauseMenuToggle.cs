@@ -6,7 +6,6 @@ using UnityEngine;
 public class PauseMenuToggle : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
-    public GameObject canvasGameInfo;
     void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -28,7 +27,6 @@ public class PauseMenuToggle : MonoBehaviour
                 canvasGroup.blocksRaycasts = false;
                 canvasGroup.alpha = 0f;
                 Time.timeScale = 1f;
-                canvasGameInfo.SetActive(true);
             }
             else
             {
@@ -36,7 +34,6 @@ public class PauseMenuToggle : MonoBehaviour
                 canvasGroup.blocksRaycasts = true;
                 canvasGroup.alpha = 1f;
                 Time.timeScale = 0f;
-                canvasGameInfo.SetActive(false);
             }
         }
     }
