@@ -59,7 +59,6 @@ public class RootMotion : MonoBehaviour
         Vector3 newRootPosition = ani.rootPosition;
         Quaternion newRootRotation = ani.rootRotation;
 
-        //TODO Here, you could scale the difference in position and rotation to make the character go faster or slower
         this.transform.position = Vector3.LerpUnclamped(this.transform.position, newRootPosition, rootMoveSpeed);
         this.transform.rotation = Quaternion.LerpUnclamped(this.transform.rotation, newRootRotation, rootTurnSpeed);
 
