@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/old scene 1.unity.meta
 guid: fb9fb2a6c6e64f94cbcda72cb596aa9c
+========
+guid: 88d5037c40acd0548a3838cc56b7d864
+>>>>>>>> parent of 7208ea2 (Merge branch 'sanjana1' of https://github.com/poojapache/ValoriaQuestPrincessRescue into sanjana1):Assets/Conifers [BOTD]/CTI_URP_10.3.2_runtime.unitypackage.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
