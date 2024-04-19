@@ -14,8 +14,7 @@ public class PatrolandRunaway : MonoBehaviour
     //public GameObject keyPrefab;
     public bool hitWall = false;
     private int energyLevel;
-    private GameObject enemyGameObject;
-    public Transform enemy; 
+    private Transform enemy; // Reference to the enemy GameObject
 
     public enum AIState
     {
@@ -26,9 +25,8 @@ public class PatrolandRunaway : MonoBehaviour
 
     void Start()
     {
-        enemyGameObject = GameObject.FindWithTag("SceneController").GetComponent<SceneController>().player;
-        enemy = enemyGameObject.transform;
-        energyLevel = enemy.GetComponent<PlayerController>().ghost2Energy;
+        enemy = GameObject.FindWithTag("Player").transform;
+        energyLevel = GameObject.FindWithTag("Player").GetComponent<PlayerController>().ghost2Energy;
         agent.speed = 10;
         agent.acceleration = 8;
         agent.angularSpeed = 120;

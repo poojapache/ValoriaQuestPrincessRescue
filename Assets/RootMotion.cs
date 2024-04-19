@@ -10,7 +10,7 @@ public class RootMotion : MonoBehaviour
 {
     private Animator ani;
     private Rigidbody rb;
-    private PlayerMovementController pCtrl;
+    private PlayerController pCtrl;
 
     public float animationSpeed = 1f;
     public float rootMoveSpeed = 1f;
@@ -23,7 +23,7 @@ public class RootMotion : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        pCtrl = GetComponent<PlayerMovementController>();
+        pCtrl = GetComponent<PlayerController>();
     }
 
     // Start is called before the first frame update
