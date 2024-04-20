@@ -59,7 +59,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AtmosphereThickness: 4.0008855
+<<<<<<< HEAD
+<<<<<<< HEAD
+    - _AtmosphereThickness: 4
+=======
+    - _AtmosphereThickness: 3.577916
+>>>>>>> parent of 08755d0 (final game changes)
+=======
+    - _AtmosphereThickness: 3.8158987
+>>>>>>> parent of 93a0a0d (cleaned up scripts, added energy decrement for enemies)
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

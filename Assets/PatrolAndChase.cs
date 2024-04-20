@@ -10,7 +10,7 @@ public class PatrolAndChase : MonoBehaviour
     private int currStaticWaypoint = 0;
     public float attackDistance = 20f; // Distance at which the agent starts fleeing from the enemy
     //public GameObject keyPrefab;
-    public PlayerController playerController;
+    private int energyLevel;
     public bool hitWall = false;
     public Transform enemy; // Reference to the enemy GameObject
 
@@ -23,8 +23,8 @@ public class PatrolAndChase : MonoBehaviour
 
     void Start()
     {
-        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        enemy = playerController.gameObject.transform;
+        //enemy = GameObject.FindWithTag("Player").transform;
+        energyLevel = GameObject.FindWithTag("Player").GetComponent<PlayerController>().ghost1Energy;
         agent.speed = 10;
         agent.acceleration = 8;
         agent.angularSpeed = 120;
