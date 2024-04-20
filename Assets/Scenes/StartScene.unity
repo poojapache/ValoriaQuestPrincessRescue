@@ -4448,19 +4448,21 @@ MonoBehaviour:
   m_text: '1. Navigate through the game using arrow keys to control your character''s
     movements.
 
-    2. Acquire a set number of keys to unlock designated doors within
-    the game world.
+    2. Acquire a specific number of keys to unlock designated doors
+    within the game world.
 
-    3. Discover and gather swords and potions to boost your
-    energy levels and engage in combat with adversaries.
+    3. Collect all the the gems in each level to proceed.
 
-    4. Seek out and collect
-    all five gems scattered throughout the game environment to obtain the revered
-    Tiara of the princess.
+    4.
+    Each time you come in contact with an enemy you will lose 10 energy points and
+    if it goes down to 0, you lose the game.
 
-    5. Gather all keys along with the Princess Tiara
-    to confront the final enemy, safeguard Valoria, and rescue the princess, ensuring
-    the realm''s safety.'
+    5. Once you collect all the gems
+    and keys in the room, the enemies will disappear.
+
+    6. The final enemy is
+    guarding a key behind it. If you get too close, you die as the enemy will chase
+    you. Find your best to collect the final key and save Valoria and the princess.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12179,6 +12181,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 3835013901895679805, guid: 6ae49c5b0994c2f419721240bbf923b9, type: 3}
+      propertyPath: birds
+      value: 
+      objectReference: {fileID: 461072159}
     - target: {fileID: 3835013901895679805, guid: 6ae49c5b0994c2f419721240bbf923b9, type: 3}
       propertyPath: panel
       value: 
