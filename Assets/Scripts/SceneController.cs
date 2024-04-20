@@ -12,6 +12,8 @@ public class SceneController : MonoBehaviour
     [HideInInspector] private CameraController cameraController;
     PlayerController playerController;
 
+    public int keys, gems, energy;
+
     private void Awake()
     {
         InitializeScene();
@@ -24,70 +26,36 @@ public class SceneController : MonoBehaviour
         malePlayer = GameObject.Find("Male Player");
         femalePlayer = GameObject.Find("Female Player");
 
-        if (CharcaterSelector.character == 1)
+        if (CharcaterSelector.character == 2)
         {
             player = femalePlayer;
             Destroy(malePlayer);
         }
         else
         {
-            Destroy(femalePlayer);
             player = malePlayer;
+            Destroy(femalePlayer);
         }
         playerController = player.GetComponent<PlayerController>();
-        cameraController.target = player.transform;
-
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (playerController == null)
         {
-            PatrolAndChase ghost2 = GameObject.FindWithTag("Ghost").GetComponent<PatrolAndChase>();
-            ghost2.enemy = player.transform;
+            Debug.LogError("PlayerController not found on player GameObject.");
+            return;
         }
+        cameraController.target = player.transform;
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public void LoadLevel2(int keys, int gems, int energy)
     {
-        if (Input.GetKeyUp(KeyCode.X))
-            QuitGame();
+        this.keys = keys;
+        this.energy = energy;
+        this.gems = gems;
 
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1f;
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void QuitGame()
-    {
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
-                Application.Quit();
-        #endif
-    }
-
-
-    public void LoadLevel2()
-    {
-        int keys = playerController.noOfKeys;
-        int gems = playerController.noOfGems;
-        int energy = playerController.energyLevel;
         SceneManager.LoadScene(2);
 
         InitializeScene();
 
-        playerController.noOfKeys = keys;
-        playerController.noOfGems = gems;
-        playerController.energyLevel = energy;
-
-        PatrolAndChase ghost2 = GameObject.FindWithTag("Ghost").GetComponent<PatrolAndChase>();
-        ghost2.enemy = player.transform;
-        
     }
+
+
 }
