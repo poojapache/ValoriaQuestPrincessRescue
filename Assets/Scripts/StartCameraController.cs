@@ -28,8 +28,10 @@ public class StartCameraController : MonoBehaviour
 
     public GameObject menuPanel; //The gam  e menu panel
     public GameObject instructionsPanel;
+    public GameObject birds;
 
-    
+    private IEnumerator coroutine;
+
 
     // Get the PostProcessVolume component
     // private PostProcessVolume postProcessVolume;
@@ -49,11 +51,13 @@ public class StartCameraController : MonoBehaviour
         instructionsPanel.SetActive(false);
 
         // Start the coroutine to play audio at the specified time
-        StartCoroutine(PlayAudioAtTime(playAtTime));
+        coroutine = PlayAudioAtTime(playAtTime);
+        StartCoroutine(coroutine);
 
         if (mainCamera == null)
             mainCamera = Camera.main;
 
+        //Added for Trailer video
         //postProcessVolume = mainCamera.GetComponent<PostProcessVolume>();
         // Add ColorGrading and DepthOfField effects to the PostProcessVolume
         //postProcessVolume.profile.TryGetSettings(out grain);
@@ -70,9 +74,6 @@ public class StartCameraController : MonoBehaviour
 
     public void DoSkip()
     {
-        // var tCameraPosn = transform.localPosition;
-        // tCameraPosn.z = 1100.0f;
-        //AssignNewLayer();
         targetAtmosphericThickness = 4f;
         RenderSettings.skybox.SetFloat("_AtmosphereThickness", targetAtmosphericThickness);
         hasReachedTarget = true;
@@ -80,7 +81,7 @@ public class StartCameraController : MonoBehaviour
         if (narrative != null) narrative.Stop();
         timer = 17;
         skip = true;
-        StopCoroutine(PlayAudioAtTime(0f));
+        StopCoroutine(coroutine);
     }
 
     public void AssignNewLayer()
@@ -166,6 +167,7 @@ public class StartCameraController : MonoBehaviour
                 gameTitle.SetActive(true);
                 creatorsTitle.SetActive(false);
                 skip = false;
+                birds.SetActive(false);
             }
         }
         if (timer >= 19 && timer < 23 && !gameTitle.activeSelf)

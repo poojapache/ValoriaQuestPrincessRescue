@@ -26,7 +26,7 @@ public class SceneController : MonoBehaviour
         malePlayer = GameObject.Find("Male Player");
         femalePlayer = GameObject.Find("Female Player");
 
-        if (CharcaterSelector.character == 2)
+        if (CharcaterSelector.character == 1)
         {
             player = femalePlayer;
             Destroy(malePlayer);

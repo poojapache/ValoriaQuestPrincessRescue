@@ -58,6 +58,15 @@ public class CharcaterSelector : MonoBehaviour, IPointerEnterHandler, IPointerEx
         imageToShowHide.gameObject.SetActive(true);
         selected = true;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        string tag = eventData.selectedObject.tag;
+        if (tag == "Male")
+        {
+            MaleCharcaterSelect();
+        }
+        else if (tag == "Female")
+        {
+            FemaleCharcaterSelect();
+        }
     }
 
 }
