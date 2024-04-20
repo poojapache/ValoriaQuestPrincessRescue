@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -62,8 +61,7 @@ public class PlayerController : MonoBehaviour
     public GameObject softStarEnemyParent;
     public GameObject heartEnemyParent;
     public GameObject cubieEnemyParent;
-    public bool collectedPotion;
-    public GameObject bigGhost;
+    
 
     // Initialize; Start is called before the first frame update.
     void Start()
@@ -73,22 +71,15 @@ public class PlayerController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         gameInfoText = gameInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        SetKeyCountText();
+        SetGemCountText();
+        SetEnergyCountText();
         sceneController = GameObject.FindWithTag("SceneController").GetComponent<SceneController>();
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            noOfGems = sceneController.gems;
-            noOfKeys = sceneController.keys;
-            energyLevel = sceneController.energy;
-        }
-        
         collectedSoftStarGem = false;
         collectedHeartGem = false;
         collectedCubiodGem = false;
         collectedHexagonGem = false;
-
-        SetKeyCountText();
-        SetGemCountText();
-        SetEnergyCountText();
+        
     }
 
 
@@ -96,14 +87,13 @@ public class PlayerController : MonoBehaviour
     void SetKeyCountText()
     {
         keyCountText.text = noOfKeys.ToString();
-        Debug.Log("set keys to " + noOfKeys);
     }
 
     // Set the energy level
     void SetEnergyCountText()
     {
         energyCountText.text = energyLevel.ToString();
-        if (energyLevel < 50 && collectedPotion) energyCountText.color = Color.red;
+        if (energyLevel < 50 && sceneController.collectedPotion) energyCountText.color = Color.red;
         else energyCountText.color = Color.white;
     }
 
@@ -124,7 +114,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject.tag);
             other.gameObject.SetActive(false);
             energyLevel += 50;
-            collectedPotion = true;
+            sceneController.collectedPotion = true;
             StartCoroutine(UIAnimationCoroutine(energyImage));
             SetEnergyCountText();
         }
@@ -139,9 +129,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(UIAnimationCoroutine(gemImage));
             SetGemCountText();
             SetGemStatus(other.gameObject.name);
-            if (noOfGems == 5 && gameInfo.activeSelf) gameInfo.SetActive(false);
-            if (noOfGems == 9 && gameInfo.activeSelf) gameInfo.SetActive(false);
-
+            
         }
         if (other.gameObject.CompareTag("Ghost"))
         {
@@ -169,7 +157,7 @@ public class PlayerController : MonoBehaviour
             energyLevel -= 10; ;
             StartCoroutine(UIAnimationCoroutine(energyImage));
             SetEnergyCountText();
-            if (energyLevel == 0 && collectedPotion) GameLost();
+            if (energyLevel == 0 && sceneController.collectedPotion) GameLost();
             
         }
 
@@ -182,7 +170,6 @@ public class PlayerController : MonoBehaviour
         {
             CollectKey();
             other.gameObject.SetActive(false);
-            
         }
         if (other.gameObject.CompareTag("EnergyCollectible"))
         {
@@ -214,12 +201,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SetGemWarningText(int gems)
-    {
-        gameInfo.SetActive(true);
-        gameInfoText.GetComponent<TextMeshProUGUI>().text = "You need " + gems + " gems to complete this level!";
-    }
-
     public void ClearGameInfoText()
     {
         gameInfo.SetActive(false);
@@ -233,13 +214,16 @@ public class PlayerController : MonoBehaviour
         SetKeyCountText();
         SetDoorJam();
         CheckKillGhost();
-        if(noOfKeys == 9)
-        {
-            Destroy(bigGhost);
-            PlayKillGhostAudio();
-        }
     }
 
+    //public void GameWon()
+    //{
+    //    audioSource.clip = audioClips[5];
+    //    audioSource.Play();
+    //    Time.timeScale = 0f;
+    //    gameWonGameObject.SetActive(true);
+    //    backgroundAudio.SetActive(false);
+    //}
 
     public void GameLost()
     {
@@ -418,12 +402,13 @@ public class PlayerController : MonoBehaviour
 
         levelWonObject.SetActive(false);
         //load new scene
-        sceneController.LoadLevel2(noOfKeys, noOfGems, energyLevel);
+        sceneController.LoadLevel2();
 
     }
 
     private IEnumerator GameWonCoroutine()
     {
+
         yield return new WaitForSeconds(1.1f);
         //audio
         PlayLevelWonAudio();
@@ -437,6 +422,7 @@ public class PlayerController : MonoBehaviour
         gameWonObject.SetActive(false);
         //load new scene
         SceneManager.LoadScene(3);
+
     }
 
     public void LevelWon()

@@ -59,7 +59,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+<<<<<<< HEAD
     - _AtmosphereThickness: 4
+=======
+    - _AtmosphereThickness: 3.577916
+>>>>>>> parent of 08755d0 (final game changes)
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
