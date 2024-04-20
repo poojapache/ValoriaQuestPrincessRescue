@@ -29,7 +29,8 @@ public class StartCameraController : MonoBehaviour
     public GameObject menuPanel; //The gam  e menu panel
     public GameObject instructionsPanel;
 
-    
+    private IEnumerator coroutine;
+
 
     // Get the PostProcessVolume component
     // private PostProcessVolume postProcessVolume;
@@ -49,7 +50,8 @@ public class StartCameraController : MonoBehaviour
         instructionsPanel.SetActive(false);
 
         // Start the coroutine to play audio at the specified time
-        StartCoroutine(PlayAudioAtTime(playAtTime));
+        coroutine = PlayAudioAtTime(playAtTime);
+        StartCoroutine(coroutine);
 
         if (mainCamera == null)
             mainCamera = Camera.main;
@@ -80,7 +82,7 @@ public class StartCameraController : MonoBehaviour
         if (narrative != null) narrative.Stop();
         timer = 17;
         skip = true;
-        StopCoroutine(PlayAudioAtTime(0f));
+        StopCoroutine(coroutine);
     }
 
     public void AssignNewLayer()
