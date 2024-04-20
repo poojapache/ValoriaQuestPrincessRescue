@@ -36,7 +36,7 @@ public class GameDoorController : MonoBehaviour
     private void OnTriggerEnter(Collider c)
     {
         //chek if collider belongs to player and check if player has enough keys
-        if (c.gameObject.CompareTag("Player") && c.GetComponent<PlayerController>().noOfKeys == noOfKeysRequired && animator.GetInteger("doorVal") == 1)
+        if (c.gameObject.CompareTag("Player") && c.GetComponent<PlayerController>().noOfKeys == noOfKeysRequired)
         {
             playerController = c.GetComponent<PlayerController>();
             keyInfoGameObject.SetActive(false);
@@ -62,11 +62,6 @@ public class GameDoorController : MonoBehaviour
                 {
                     //StartCoroutine(LevelWonCoroutine(c.gameObject));
                     playerController.LevelWon();
-                }
-                else if (noOfKeysRequired == 9)
-                {
-                    //StartCoroutine(LevelWonCoroutine(c.gameObject));
-                    playerController.GameWon();
                 }
 
             }
