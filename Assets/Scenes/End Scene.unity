@@ -1536,12 +1536,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ca81cdd988abf48a23cf4c403c516d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doAttack: 0
-  speed: 4
   noOfKeys: 0
   energyLevel: 0
   noOfGems: 0
-  doorCount: 0
   keyCountText: {fileID: 0}
   GemCountText: {fileID: 0}
   energyCountText: {fileID: 0}
@@ -1549,9 +1546,6 @@ MonoBehaviour:
   keyImage: {fileID: 0}
   energyImage: {fileID: 0}
   gemImage: {fileID: 0}
-  InputMapToCircular: 1
-  forwardInputFilter: 5
-  turnInputFilter: 5
   audioClips:
   - {fileID: 8300000, guid: faa808f6b9e41ff41bb7627be433a09d, type: 3}
   - {fileID: 8300000, guid: b464844c7b1a9cc41bad699e4bc91a61, type: 3}
@@ -1566,6 +1560,10 @@ MonoBehaviour:
   gameWonGameObject: {fileID: 2076930522}
   respawnObject: {fileID: 0}
   respawnMessage: {fileID: 0}
+  levelWonObject: {fileID: 0}
+  levelWonMessage: {fileID: 0}
+  gameWonObject: {fileID: 0}
+  gameWonMessage: {fileID: 0}
   backgroundAudio: {fileID: 1292667244}
   gameDoorAnimator:
   - {fileID: 0}
@@ -1583,6 +1581,16 @@ MonoBehaviour:
   ghost1Energy: 60
   ghost2Energy: 100
   ghost2Gems: 4
+  playerInput: {fileID: 0}
+  playerMovementController: {fileID: 0}
+  collectedSoftStarGem: 0
+  collectedHeartGem: 0
+  collectedCubiodGem: 0
+  collectedHexagonGem: 0
+  softStarEnemyParent: {fileID: 0}
+  heartEnemyParent: {fileID: 0}
+  cubieEnemyParent: {fileID: 0}
+  collectedPotion: 0
   bigGhost: {fileID: 0}
 --- !u!54 &291230709
 Rigidbody:
@@ -3427,7 +3435,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 44fed51d8bf143f49b81d43676c0c57a, type: 2}
     - target: {fileID: 919132149155446097, guid: 35df1d3b9dead3345987d9433c0c91fe, type: 3}
       propertyPath: m_Name
-      value: "\u540A\u706F"
+      value: Chandelier
       objectReference: {fileID: 0}
     - target: {fileID: 5616652976005822481, guid: 35df1d3b9dead3345987d9433c0c91fe, type: 3}
       propertyPath: m_LocalScale.y
@@ -3597,7 +3605,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 61d57512ebd68484681e9f9c185ec41b, type: 2}
     - target: {fileID: 919132149155446097, guid: 8bae41656ec544b4cb865eae0bf38ad4, type: 3}
       propertyPath: m_Name
-      value: "\u043A\u043E\u0432\u0435\u04401"
+      value: Carpet
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 8bae41656ec544b4cb865eae0bf38ad4, type: 3}
       propertyPath: m_LocalScale.y
